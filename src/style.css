@@ -1,14 +1,55 @@
-#canv{
-    border: 5px solid black;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 600px;
-    height: 600px;
+body{
+    margin: 0;
+    font-family: cursive;
+}
+
+#navbar{
+    padding: 7px;
+    display: flex;
+    justify-content: space-between;
+    height: 5em;
+    background: linear-gradient(#5AFF15, #00B712);
+    text-align: center;
+}
+
+.score{
+    margin-left: 70px;
+}
+
+#score--text{
+    padding: 5px;
+    font-weight: 900;
+    margin: 0;
+}
+
+.leaderboard--btn{
+    border: none;
+    cursor: pointer;
+    appearance: none;
+}
+
+.leaderboard--btn > img{
+    width: 65px;
+    height: 50px;
+}
+
+#navbar > h1 > img{
+    width: 60px;
+    height: 60px;
 }
 
 #points{
+    font-family: cursive;
+    font-weight: 900;
+    margin: 0;
+}
+
+#canv{
+    border: 5px solid black;
     position: absolute;
-    display: flex;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30em;
+    height: 30em;
 }

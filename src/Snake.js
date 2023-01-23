@@ -9,13 +9,19 @@ export default class Snake{
         [this.x, this.y] = this.Center();
     };
 
-    Update(points){
+    Update(ctx, points){
+        this.Draw(ctx);
         this.CheckKeyPressed();
         this.DirMap();
         this.SetBoundries();
         points = this.isOver(points);
         return points;
-    }
+    };
+
+    Draw(ctx){
+        ctx.fillStyle = "blue";
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+    };
 
     Center() {
         let x = (CANVAS_WIDTH - this.width) / 2;
