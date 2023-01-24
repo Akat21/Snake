@@ -3,6 +3,15 @@ body{
     font-family: cursive;
 }
 
+html { 
+    background: url(./assets/snake_background.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: 10% 100%;
+  }
+
 #navbar{
     padding: 7px;
     display: flex;
@@ -13,24 +22,107 @@ body{
 }
 
 .score{
-    margin-left: 70px;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    text-align: center;
 }
 
-#score--text{
-    padding: 5px;
+.actual--score{
+    display: flex;
+    justify-content: center;
+}
+
+.highscore{
+    margin-left: 200px;
+    display: flex;
+    justify-content: center;
+}
+
+.highscore--img{
+    width: 50px;
+    height: 50px;
+}
+
+.highscore--disp{
+    margin-top: 6px;
+    margin-left: 10px;
+    text-align: center;
+    font-family: cursive;
     font-weight: 900;
-    margin: 0;
+}
+
+#points{
+    margin-top: 6px;
+    margin-left: 10px;
+    text-align: center;
+    font-family: cursive;
+    font-weight: 900;
+}
+
+.score--img{
+    width: 50px;
+    height: 50px;
+}
+
+.map--btn{
+    width: 80px;
+    height: 80px;
+    background: url('./assets/map1.PNG');
+    background-size: 100% 100%;
+    border: 1.5px solid black; 
+    border-radius: 7px; 
+    cursor: pointer;
+    appearance: none;
+    margin-right: 15px;
+}
+
+.map--btn:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.difficulty--btn{
+    width: 80px;
+    height: 80px;
+    background: url('./assets/easy.jpg');
+    background-size: 100% 100%;
+    border: 1.5px solid black;
+    border-radius: 7px;
+    cursor: pointer;
+    appearance: none;
+}
+
+.difficulty--btn:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 .leaderboard--btn{
+    width: 80px;
+    height: 80px;
+    background: url('./assets/leaderboard.png');
+    background-size: 100% 100%;
+    border: none;
+    cursor: pointer;
+    appearance: none;
+    margin-right: 15px;
+}
+
+.leaderboard--btn:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.settings--btn{
+    width: 80px;
+    height: 80px;
+    background: url('./assets/Settings.png');
+    background-size: 100% 100%;
     border: none;
     cursor: pointer;
     appearance: none;
 }
 
-.leaderboard--btn > img{
-    width: 65px;
-    height: 50px;
+.settings--btn:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 #navbar > h1 > img{
@@ -38,18 +130,45 @@ body{
     height: 60px;
 }
 
-#points{
-    font-family: cursive;
-    font-weight: 900;
-    margin: 0;
+
+@media screen and (min-height: 600px){
+    #canv{
+        border: 5px solid black;
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 30em;
+        height: 30em;
+    }
 }
 
-#canv{
-    border: 5px solid black;
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 30em;
-    height: 30em;
+@media screen and (max-height: 660px){
+    #canv{
+        border: 5px solid black;
+        position: absolute;
+        top: 52%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 20em;
+        height: 20em;
+    }
+}
+
+@media screen and (max-height: 600px){
+    #canv{
+        border: 5px solid black;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 10em;
+        height: 10em;
+    }
+}
+
+@media screen and (max-height: 360px){
+    #canv{
+        display: none;
+    }
 }

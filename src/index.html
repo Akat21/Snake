@@ -9,13 +9,25 @@
 </head>
 <body>
     <nav id="navbar">
-        <button class="leaderboard--btn"><img src="./assets/leaderboard.png" alt="leaderboard"/></button>
-        <div class="score">
-            <h1 id="score--text">Actual Score</h1>
+        <div class="game--features">
+            <button class="map--btn"></button>
+            <button class="difficulty--btn"></button>
+        </div>
+        <div class="game--additions">
+            <button class="leaderboard--btn"></button>
+            <button class="settings--btn"></button>
+        </div>
+    </nav>
+    <div class="score">
+        <div class="actual--score">
+            <img class="score--img" src="./assets/apple.png" alt="score"/>
             <h1 id="points">0</h1>
         </div>
-        <h1 class="highscore">Highscore 0</h1>
-    </nav>
+        <div class="highscore">
+            <img class="highscore--img" src="./assets/trophy.png" alt="highscore"/>
+            <h1 class="highscore--disp">0</h1>
+        </div>
+    </div>
     <canvas id="canv"></canvas>
     <script type="module" src="./script.js"></script>
 </body>
