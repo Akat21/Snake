@@ -2,7 +2,11 @@ import Snake from "./Snake.js";
 import Fruits from "./Fruits.js";
 import Map from "./Map.js";
 
-const difficulty_btn = document.getElementById("difficulty--btn")
+const difficulty_btn = document.getElementById("difficulty--btn");
+const close_difficulty_btn = document.getElementById("close--difficulty--btn");
+const easy_btn = document.getElementById('easy--diff--btn');
+const medium_btn = document.getElementById('medium--diff--btn');
+const hard_btn = document.getElementById('hard--diff--btn');
 const canvas = document.getElementById("canv");
 const ctx = canvas.getContext("2d");
 export const CANVAS_WIDTH = canvas.width = 500;
@@ -18,7 +22,46 @@ let points = 0;
 
 difficulty_btn.addEventListener("click",(e) =>{
     let difficulty_choose_div = document.getElementById("difficulty--choose");
+    let popup_background = document.getElementById("popup--background");
+    popup_background.style.display="block";
     difficulty_choose_div.style.display="block";
+});
+
+close_difficulty_btn.addEventListener("click", (e)=>{
+    let difficulty_choose_div = document.getElementById("difficulty--choose");
+    let popup_background = document.getElementById("popup--background");
+    popup_background.style.display="none";
+    difficulty_choose_div.style.display="none";
+});
+
+easy_btn.addEventListener("click",(e)=>{
+    console.log(medium_btn.style.background);
+    difficulty_btn.style.background = "url('./assets/easy.jpg')";
+    difficulty_btn.style.backgroundSize = "100% 100%";
+    let difficulty_choose_div = document.getElementById("difficulty--choose");
+    let popup_background = document.getElementById("popup--background");
+    popup_background.style.display="none";
+    difficulty_choose_div.style.display="none";
+});
+
+medium_btn.addEventListener("click",(e)=>{
+    console.log(medium_btn.style.background);
+    difficulty_btn.style.background = "url('./assets/medium.jpg')";
+    difficulty_btn.style.backgroundSize = "100% 100%";
+    let difficulty_choose_div = document.getElementById("difficulty--choose");
+    let popup_background = document.getElementById("popup--background");
+    popup_background.style.display="none";
+    difficulty_choose_div.style.display="none";
+});
+
+hard_btn.addEventListener("click",(e)=>{
+    console.log(medium_btn.style.background);
+    difficulty_btn.style.background = "url('./assets/hard.jpg')";
+    difficulty_btn.style.backgroundSize = "100% 100%";
+    let difficulty_choose_div = document.getElementById("difficulty--choose");
+    let popup_background = document.getElementById("popup--background");
+    popup_background.style.display="none";
+    difficulty_choose_div.style.display="none";
 });
 
 function draw(){

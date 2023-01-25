@@ -97,21 +97,6 @@ html {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
-#difficulty--choose{
-        z-index: 9;
-        display: none;
-        border: none;
-        border-radius: 15px;
-        background-color: white;
-        box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 25em;
-        height: 35em;
-}
-
 .leaderboard--btn{
     width: 80px;
     height: 80px;
@@ -144,6 +129,98 @@ html {
 #navbar > h1 > img{
     width: 60px;
     height: 60px;
+}
+
+
+#difficulty--choose{
+    z-index: 101;
+    display: none;
+    border: 9px solid #9ACD32;
+    border-radius: 25px;
+    background: linear-gradient(#AFF1DA, #F9EA8F);
+    box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 25em;
+    height: 38em;
+    text-align: center;
+}
+
+#close--difficulty--btn{
+    margin: 7px;
+    top: 0;
+    right: 0;
+    position: absolute;
+    background: url('./assets/x.png');
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background-size: 100% 100%;
+}
+
+#easy--diff--btn{
+    margin-top: -8px;
+    background: url('./assets/easy_full.jpg');
+    background-size: 100% 100%;
+    width: 350px;
+    height: 165px;
+    border: 3px solid goldenrod;
+    border-radius: 15px;
+    cursor: pointer;
+    opacity: 50%;
+}
+
+#easy--diff--btn:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    opacity: 100%;
+}
+
+#medium--diff--btn{
+    margin: 10px;
+    background: url('./assets/medium_full.jpg');
+    background-size: 100% 100%;
+    width: 350px;
+    height: 165px;
+    border: 3px solid goldenrod;
+    border-radius: 15px;
+    cursor: pointer;
+    opacity: 50%;
+}
+
+#medium--diff--btn:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    opacity: 100%;
+}
+
+#hard--diff--btn{
+    background: url('./assets/hard_full.jpg');
+    background-size: 100% 100%;
+    width: 350px;
+    height: 165px;
+    border: 3px solid goldenrod;
+    border-radius: 15px;
+    cursor: pointer;
+    opacity: 50%;
+}
+
+#hard--diff--btn:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    opacity: 100%;
+}
+
+#popup--background{
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 100;
 }
 
 
