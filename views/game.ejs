@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div id="popup--background" style="display: none;"></div>
+    <div id="popup--login" style="display: none;">
+        <h1 id="title"><span id="fancy--s">S</span> NAKE</h1>
+        <div id="avatar--login">
+            <img id="avatar--login--avatar" src="../assets/snake_avatar1.png" alt="avatar">
+            <button id="avatar--login--btn"></button>
+        </div>
+        <form action="/" method="POST">
+            <div id="name">
+                <h1 id="name--label">Enter your nickname:</h1>
+                <input id="name--input" type="text" name="nickname" maxlength="12" onfocus="this.value=''">
+            </div>
+            <button id="start--btn" type="submit"></button>
+        </form>
+    </div>
+    <nav id="navbar">
+        <div class="game--features">
+            <button class="map--btn"></button>
+            <button id="difficulty--btn"></button>
+        </div>
+        <div class="game--additions">
+            <button id="leaderboard--btn"></button>
+            <button id="settings--btn"></button>
+            <div id="mySettings" class="settings--content">
+                <div id="avatar--settings">
+                    <img id="avatar--settings--avatar" src="../assets/snake_avatar1.png" alt="avatar">
+                    <button id="avatar--settings--btn"></button>
+                </div>
+                <div id="settings--name">
+                    <h1 id="settings--name--txt"></h1>
+                    <button id="settings--name--edit--btn"></button>
+                </div>
+                <input id="change--name" type="text" maxlength="12" onfocus="this.value=''">
+                <button id="confirm--btn"></button>
+            </div>
+        </div>
+    </nav>
+    <div id="difficulty--choose">
+        <h1>Difficulty</h1>
+        <button id="close--difficulty--btn"></button>
+        <button id="easy--diff--btn"></button>
+        <button id="medium--diff--btn"></button>
+        <button id="hard--diff--btn"></button>
+    </div>
+    <div id="leaderboard--popup">
+        <h1>Leaderboard</h1>
+        <button id="close--leaderboard--btn"></button>
+    </div>
+    <div class="score">
+        <div class="actual--score">
+            <img class="score--img" src="../assets/apple.png" alt="score"/>
+            <h1 id="points">0</h1>
+        </div>
+        <div class="highscore">
+            <img class="highscore--img" src="../assets/trophy.png" alt="highscore"/>
+            <h1 id="highscore--disp">0</h1>
+        </div>
+    </div>
+    <canvas id="canv"></canvas>
+    <script type="module" src="../script.js"></script>
+</body>
+</html>

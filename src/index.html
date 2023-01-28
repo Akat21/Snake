@@ -15,11 +15,13 @@
             <img id="avatar--login--avatar" src="./assets/snake_avatar1.png" alt="avatar">
             <button id="avatar--login--btn"></button>
         </div>
-        <div id="name">
-            <h1 id="name--label">Enter your nickname:</h1>
-            <input id="name--input"type="text" name="nickname" maxlength="12" onfocus="this.value=''">
-        </div>
-        <button id="start--btn" type="submit"></button>
+        <form action="/" method="POST">
+            <div id="name">
+                <h1 id="name--label">Enter your nickname:</h1>
+                <input id="name--input"type="text" name="nickname" maxlength="12" onfocus="this.value=''">
+            </div>
+            <button id="start--btn" type="submit"></button>
+        </form>
     </div>
     <nav id="navbar">
         <div class="game--features">

@@ -7,6 +7,7 @@ const name = document.getElementById("name--input");
 const change_name = document.getElementById("change--name");
 const settings_name = document.getElementById("settings--name--txt");
 const settings_btn = document.getElementById("settings--btn");
+const settings_content = document.getElementById("mySettings");
 const confirm_btn = document.getElementById("confirm--btn");
 const settings_name_edit_btn = document.getElementById("settings--name--edit--btn");
 const difficulty_btn = document.getElementById("difficulty--btn");
@@ -21,7 +22,11 @@ const ctx = canvas.getContext("2d");
 export const CANVAS_WIDTH = canvas.width = 500;
 export const CANVAS_HEIGHT = canvas.height = 500;
 
-let color = 'blue';
+let params = (new URL(document.location)).searchParams;
+console.log(new URL(document.location).pathname);
+
+let nickname = params.get("user");
+
 const snake = new Snake(50, 50);
 const fruit = new Fruits(10, 10);
 const map = new Map();
@@ -32,7 +37,8 @@ let points = 0;
 let highscore = 0;
 
 name.value = `Guest${RandomNumberGenerator(999999)}`;
-change_name.value = name.value;
+change_name.value = nickname;
+settings_name.innerText = nickname;
 
 name.addEventListener("focusout", (e)=>{
     if (name.value.length === 0){
@@ -42,7 +48,7 @@ name.addEventListener("focusout", (e)=>{
 
 change_name.addEventListener("focusout", (e)=>{
     if (change_name.value.length === 0){
-        change_name.value = name.value;
+        change_name.value = nickname;
     }
 });
 
@@ -77,6 +83,7 @@ settings_btn.addEventListener("click",(e)=>{
 settings_name_edit_btn.addEventListener("click", (e)=>{
     change_name.style.display = "inline-block";
     confirm_btn.style.display = "inline-block";
+    settings_content.style.height = "260px";
 });
 
 confirm_btn.addEventListener("click", (e)=>{
@@ -86,6 +93,11 @@ confirm_btn.addEventListener("click", (e)=>{
     }
     change_name.style.display = "none";
     confirm_btn.style.display = "none"
+    settings_content.style.height = "190px";
+    if (new URL(document.location).pathname == '/game/'){
+        params.set("user", change_name.value);
+        document.location.search = params.toString();
+    }
 });
 
 difficulty_btn.addEventListener("click",(e) =>{
