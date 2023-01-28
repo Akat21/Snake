@@ -12,13 +12,18 @@ router.get('/', (req, res)=>{
 });
 
 router.post('/', (req, res)=>{
-    console.log(req.body);
-    if(fs.existsSync("./database/leadearboard.txt")){
+    id = RandomNumberGenerator(9999999)
+    if(fs.existsSync("./database/leaderboard.txt")){
+        fs.appendFileSync('./database/leaderboard.txt', req.body.nickname + ",0," + id + ';', 'utf-8');
     }
     else{
-        fs.writeFileSync('./database/leaderboard.txt', req.body.nickname, 'utf-8');
+        fs.writeFileSync('./database/leaderboard.txt', req.body.nickname + ",0," + id + ';', 'utf-8');
     }
-    res.redirect('game/?user=' + req.body.nickname);
+    res.redirect('game/?user=' + req.body.nickname + '&id=' + id);
 })
+
+function RandomNumberGenerator(max){
+    return Math.floor(Math.random() * max);
+}
 
 module.exports = router;

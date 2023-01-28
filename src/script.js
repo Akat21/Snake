@@ -2,7 +2,9 @@ import Snake from "./Snake.js";
 import Fruits from "./Fruits.js";
 import Map from "./Map.js";
 
+
 const start_btn = document.getElementById("start--btn");
+const restart_btn = document.getElementById("restart--btn");
 const name = document.getElementById("name--input");
 const change_name = document.getElementById("change--name");
 const settings_name = document.getElementById("settings--name--txt");
@@ -23,8 +25,6 @@ export const CANVAS_WIDTH = canvas.width = 500;
 export const CANVAS_HEIGHT = canvas.height = 500;
 
 let params = (new URL(document.location)).searchParams;
-console.log(new URL(document.location).pathname);
-
 let nickname = params.get("user");
 
 const snake = new Snake(50, 50);
@@ -35,6 +35,18 @@ const points_disp = document.getElementById("points");
 const highscore_disp = document.getElementById("highscore--disp");
 let points = 0;
 let highscore = 0;
+
+let leaderboard_data;
+
+//load file content from backend
+fetch('/leaderboard_content')
+    .then(response => response.text())
+    .then(data => {
+        data = data.split(';');
+        //tutaj stworzyc liste obiektow wyswietlic we froncie w divie leaderboar TODO
+        console.log(data);
+});
+
 
 name.value = `Guest${RandomNumberGenerator(999999)}`;
 change_name.value = nickname;
@@ -67,11 +79,16 @@ close_leaderboard_btn.addEventListener("click", (e)=>{
 });
 
 start_btn.addEventListener("click", (e)=>{
-    let popup_login = document.getElementById("popup--login");
-    let popup_background = document.getElementById("popup--background");
-    popup_login.style.display = "none";
-    popup_background.style.display = "none";
     settings_name.innerText = change_name.value;
+});
+
+restart_btn.addEventListener("click", (e)=>{
+    let popup_background = document.getElementById("popup--background");
+    let game_over_screen = document.getElementById("game--over");
+    let highscore_save = document.getElementById("highscore--save");
+    highscore_save.value = highscore;
+    popup_background.style.display = "none";
+    game_over_screen.style.display = "none";
 });
 
 settings_btn.addEventListener("click",(e)=>{
@@ -94,10 +111,6 @@ confirm_btn.addEventListener("click", (e)=>{
     change_name.style.display = "none";
     confirm_btn.style.display = "none"
     settings_content.style.height = "190px";
-    if (new URL(document.location).pathname == '/game/'){
-        params.set("user", change_name.value);
-        document.location.search = params.toString();
-    }
 });
 
 difficulty_btn.addEventListener("click",(e) =>{
@@ -116,7 +129,7 @@ close_difficulty_btn.addEventListener("click", (e)=>{
 
 easy_btn.addEventListener("click",(e)=>{
     console.log(medium_btn.style.background);
-    difficulty_btn.style.background = "url('./assets/easy.jpg')";
+    difficulty_btn.style.background = "url('../assets/easy.jpg')";
     difficulty_btn.style.backgroundSize = "100% 100%";
     let difficulty_choose_div = document.getElementById("difficulty--choose");
     let popup_background = document.getElementById("popup--background");
@@ -126,7 +139,7 @@ easy_btn.addEventListener("click",(e)=>{
 
 medium_btn.addEventListener("click",(e)=>{
     console.log(medium_btn.style.background);
-    difficulty_btn.style.background = "url('./assets/medium.jpg')";
+    difficulty_btn.style.background = "url('../assets/medium.jpg')";
     difficulty_btn.style.backgroundSize = "100% 100%";
     let difficulty_choose_div = document.getElementById("difficulty--choose");
     let popup_background = document.getElementById("popup--background");

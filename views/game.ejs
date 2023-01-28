@@ -40,11 +40,20 @@
                     <h1 id="settings--name--txt"></h1>
                     <button id="settings--name--edit--btn"></button>
                 </div>
-                <input id="change--name" type="text" maxlength="12" onfocus="this.value=''">
-                <button id="confirm--btn"></button>
+                <form action="/game" method="POST">
+                    <input id="change--name" type="text" name="nickname" maxlength="12" onfocus="this.value=''">
+                    <button id="confirm--btn" type="submit"></button>
+                </form>
             </div>
         </div>
     </nav>
+    <div id="game--over">
+        <form action="/game" method="POST">
+            <h1>Try Again!</h1>
+            <input id="highscore--save" type="hidden" name="highscore">
+            <button id="restart--btn" type="submit"></button>
+        </form>
+    </div>
     <div id="difficulty--choose">
         <h1>Difficulty</h1>
         <button id="close--difficulty--btn"></button>

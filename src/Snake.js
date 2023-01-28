@@ -38,7 +38,10 @@ export default class Snake{
 
     isOver(highscore, points){
         if (this.gameOver === true){
-            alert("Game Over");
+            let game_over_screen = document.getElementById("game--over");
+            game_over_screen.style.display = "block";
+            let popup_background = document.getElementById("popup--background");
+            popup_background.style.display = "block";
             if (highscore < points){
                 highscore = points;
             }
