@@ -1,4 +1,4 @@
-import { CANVAS_WIDTH, CANVAS_HEIGHT } from "./script.js";
+import { CANVAS_WIDTH, CANVAS_HEIGHT, RandomNumberGenerator } from "./script.js";
 
 export default class Fruits{
     constructor(width, height){
@@ -40,8 +40,4 @@ export default class Fruits{
     GenerateRandomLoc(max, minus){
         return RandomNumberGenerator(max - minus);
     };
-};
-
-function RandomNumberGenerator(max){
-    return Math.floor(Math.random() * max);
 };

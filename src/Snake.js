@@ -9,13 +9,13 @@ export default class Snake{
         [this.x, this.y] = this.Center();
     };
 
-    Update(ctx, points){
+    Update(ctx, highscore, points){
         this.Draw(ctx);
         this.CheckKeyPressed();
         this.DirMap();
         this.SetBoundries();
-        points = this.isOver(points);
-        return points;
+        [highscore, points] = this.isOver(highscore, points);
+        return [highscore, points];
     };
 
     Draw(ctx){
@@ -36,12 +36,15 @@ export default class Snake{
         return 0;
     };
 
-    isOver(points){
+    isOver(highscore, points){
         if (this.gameOver === true){
             alert("Game Over");
+            if (highscore < points){
+                highscore = points;
+            }
             points = this.Reset();
         }
-        return points;
+        return [highscore, points];
     };
 
     SetBoundries(){

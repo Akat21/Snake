@@ -2,8 +2,17 @@ import Snake from "./Snake.js";
 import Fruits from "./Fruits.js";
 import Map from "./Map.js";
 
+const start_btn = document.getElementById("start--btn");
+const name = document.getElementById("name--input");
+const change_name = document.getElementById("change--name");
+const settings_name = document.getElementById("settings--name--txt");
+const settings_btn = document.getElementById("settings--btn");
+const confirm_btn = document.getElementById("confirm--btn");
+const settings_name_edit_btn = document.getElementById("settings--name--edit--btn");
 const difficulty_btn = document.getElementById("difficulty--btn");
+const leaderboard_btn = document.getElementById("leaderboard--btn");
 const close_difficulty_btn = document.getElementById("close--difficulty--btn");
+const close_leaderboard_btn = document.getElementById("close--leaderboard--btn");
 const easy_btn = document.getElementById('easy--diff--btn');
 const medium_btn = document.getElementById('medium--diff--btn');
 const hard_btn = document.getElementById('hard--diff--btn');
@@ -18,13 +27,72 @@ const fruit = new Fruits(10, 10);
 const map = new Map();
 
 const points_disp = document.getElementById("points");
+const highscore_disp = document.getElementById("highscore--disp");
 let points = 0;
+let highscore = 0;
+
+name.value = `Guest${RandomNumberGenerator(999999)}`;
+change_name.value = name.value;
+
+name.addEventListener("focusout", (e)=>{
+    if (name.value.length === 0){
+        name.value = `Guest${RandomNumberGenerator(999999)}`
+    }
+});
+
+change_name.addEventListener("focusout", (e)=>{
+    if (change_name.value.length === 0){
+        change_name.value = name.value;
+    }
+});
+
+leaderboard_btn.addEventListener("click", (e)=>{
+    let leaderboard_popup = document.getElementById("leaderboard--popup");
+    let popup_background = document.getElementById("popup--background");
+    leaderboard_popup.style.display = "block";
+    popup_background.style.display = "block";
+});
+
+close_leaderboard_btn.addEventListener("click", (e)=>{
+    let leaderboard_popup = document.getElementById("leaderboard--popup");
+    let popup_background = document.getElementById("popup--background");
+    leaderboard_popup.style.display = "none";
+    popup_background.style.display = "none";
+});
+
+start_btn.addEventListener("click", (e)=>{
+    let popup_login = document.getElementById("popup--login");
+    let popup_background = document.getElementById("popup--background");
+    popup_login.style.display = "none";
+    popup_background.style.display = "none";
+    settings_name.innerText = change_name.value;
+});
+
+settings_btn.addEventListener("click",(e)=>{
+    document.getElementById("mySettings").classList.toggle("show");
+    change_name.style.display = "none";
+    confirm_btn.style.display = "none"
+});
+
+settings_name_edit_btn.addEventListener("click", (e)=>{
+    change_name.style.display = "inline-block";
+    confirm_btn.style.display = "inline-block";
+});
+
+confirm_btn.addEventListener("click", (e)=>{
+    if(change_name.value.length != 0){
+        settings_name.textContent = change_name.value;
+        name.value = change_name.value;
+    }
+    change_name.style.display = "none";
+    confirm_btn.style.display = "none"
+});
 
 difficulty_btn.addEventListener("click",(e) =>{
     let difficulty_choose_div = document.getElementById("difficulty--choose");
     let popup_background = document.getElementById("popup--background");
-    popup_background.style.display="block";
-    difficulty_choose_div.style.display="block";
+    popup_background.style.display = "block";
+    difficulty_choose_div.style.display = "block";
 });
 
 close_difficulty_btn.addEventListener("click", (e)=>{
@@ -67,14 +135,23 @@ hard_btn.addEventListener("click",(e)=>{
 function draw(){
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     map.DrawBackground(ctx);
-    points = snake.Update(ctx, points);
+    [highscore, points] = snake.Update(ctx, highscore, points);
     points = fruit.Update(ctx, snake, points);
     UpdatePoints();
+    UpdateHighscore();
     requestAnimationFrame(draw);
 };
 
 function UpdatePoints(){
     points_disp.innerText = `${points}`;
 }
+
+function UpdateHighscore(){
+    highscore_disp.innerText = `${highscore}`;
+}
+
+export function RandomNumberGenerator(max){
+    return Math.floor(Math.random() * max);
+};
 
 draw();

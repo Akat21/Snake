@@ -17,9 +17,9 @@
         </div>
         <div id="name">
             <h1 id="name--label">Enter your nickname:</h1>
-            <input id="name--input"type="text" name="nickname" maxlength="12">
+            <input id="name--input"type="text" name="nickname" maxlength="12" onfocus="this.value=''">
         </div>
-        <button id="start--btn"></button>
+        <button id="start--btn" type="submit"></button>
     </div>
     <nav id="navbar">
         <div class="game--features">
@@ -27,8 +27,20 @@
             <button id="difficulty--btn"></button>
         </div>
         <div class="game--additions">
-            <button class="leaderboard--btn"></button>
-            <button class="settings--btn"></button>
+            <button id="leaderboard--btn"></button>
+            <button id="settings--btn"></button>
+            <div id="mySettings" class="settings--content">
+                <div id="avatar--settings">
+                    <img id="avatar--settings--avatar" src="./assets/snake_avatar1.png" alt="avatar">
+                    <button id="avatar--settings--btn"></button>
+                </div>
+                <div id="settings--name">
+                    <h1 id="settings--name--txt"></h1>
+                    <button id="settings--name--edit--btn"></button>
+                </div>
+                <input id="change--name" type="text" maxlength="12" onfocus="this.value=''">
+                <button id="confirm--btn"></button>
+            </div>
         </div>
     </nav>
     <div id="difficulty--choose">
@@ -38,6 +50,10 @@
         <button id="medium--diff--btn"></button>
         <button id="hard--diff--btn"></button>
     </div>
+    <div id="leaderboard--popup">
+        <h1>Leaderboard</h1>
+        <button id="close--leaderboard--btn"></button>
+    </div>
     <div class="score">
         <div class="actual--score">
             <img class="score--img" src="./assets/apple.png" alt="score"/>
@@ -45,7 +61,7 @@
         </div>
         <div class="highscore">
             <img class="highscore--img" src="./assets/trophy.png" alt="highscore"/>
-            <h1 class="highscore--disp">0</h1>
+            <h1 id="highscore--disp">0</h1>
         </div>
     </div>
     <canvas id="canv"></canvas>
