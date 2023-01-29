@@ -25,6 +25,7 @@ export default class Map{
 
     UpdateSnakePos(ctx, snake){
         snake.Draw(ctx, snake.position_x * this.width, snake.position_y * this.height, this.width, this.height);
+        snake.DrawTail(ctx, snake.position_x * this.width, snake.position_y * this.height, this.width, this.height);
     }
 
     UpdateFruitPos(ctx, fruit){

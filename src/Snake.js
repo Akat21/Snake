@@ -6,12 +6,17 @@ export default class Snake{
         this.height = height;
         this.gameOver = false;
         this.dir = "";
+        this.prevDir = "";
         this.position_x = (CANVAS_WIDTH / 50) / 2;
         this.position_y = (CANVAS_HEIGHT / 50) / 5;
+
+        this.tailLength = 0;
+        this.tailDirs = [];
+        this.tailPosition_x = []
+        this.tailPosition_y = []
     };
 
     Update(ctx, highscore, points){
-        // this.Draw(ctx);
         this.CheckKeyPressed();
         this.DirMap();
         this.SetBoundries();
@@ -23,6 +28,52 @@ export default class Snake{
         ctx.fillStyle = "blue";
         ctx.fillRect(x, y, width, height);
     };
+
+    DrawTail(ctx, x, y, width, height){
+        if (this.tailLength > 0){
+
+            let [_x, _y] = this.AddTailPosition(this.dir, this.position_x, this.position_y);
+            this.tailPosition_x[0] = _x;
+            this.tailPosition_y[0] = _y;
+
+            //CZY POZNIEJ CZY NIE
+
+            if (this.tailLength > 1){
+                let [_x, _y] = this.AddTailPosition(
+                    this.tailDirs[this.tailDirs.length - 1],
+                    this.tailPosition_x[this.tailLength - 1],
+                    this.tailPosition_y[this.tailLength - 1]);
+                this.tailPosition_x[1] = _x;
+                this.tailPosition_y[1] = _y;
+
+                this.tailDirs[1] = this.tailDirs[0];
+            }
+            
+            this.tailDirs[0] = this.dir;
+
+            console.log(this.dir, this.tailDirs);
+
+            for (let i = 0; i < this.tailLength; i++){
+                ctx.fillStyle = "blue";
+                ctx.fillRect(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50);
+            }
+        }
+    }
+
+    AddTailPosition(dir, position_x, position_y){
+        if(dir === "down"){
+            return [position_x, position_y - 1];
+        }
+        else if(dir === "up"){
+            return [position_x, position_y + 1];
+        }
+        else if(dir === "left"){
+            return[position_x + 1, position_y];
+        }
+        else if(dir === "right"){
+            return[position_x - 1, position_y];
+        }
+    }
 
     Reset(){
         this.gameOver = false;
