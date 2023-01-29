@@ -6,6 +6,8 @@ export default class Fruits{
         this.height = height;
         this.x = this.GenerateRandomLoc(CANVAS_WIDTH, this.width);
         this.y = this.GenerateRandomLoc(CANVAS_HEIGHT, this.height);
+        this.position_x = RandomNumberGenerator(CANVAS_WIDTH / 50);
+        this.position_y = RandomNumberGenerator(CANVAS_HEIGHT / 50);
     };
 
     Update(ctx, snake, points){
@@ -16,14 +18,15 @@ export default class Fruits{
         return points;
     };
     
-    Draw(ctx){
-        ctx.fillStyle = "green";
-        ctx.fillRect(this.x, this.y, this.width, this.height);
+    Draw(ctx, x, y, width, height){
+        ctx.fillStyle = "red";
+        ctx.fillRect(x, y, width, height);
     };
 
     FindFruitCollision(snake){
-        if ((((this.x + this.width) >= snake.x) && (this.x <= (snake.x + snake.width))) && ((snake.y <= (this.y + this.height)) && (snake.y >= (this.y - snake.height)))){
-           [this.x, this.y] = this.ChangeFruitPosition(); 
+        if((this.position_x === snake.position_x) && (this.position_y === snake.position_y)){
+            this.position_x = RandomNumberGenerator(CANVAS_WIDTH / 50);
+            this.position_y = RandomNumberGenerator(CANVAS_HEIGHT / 50);
             return true;
         }
         else{

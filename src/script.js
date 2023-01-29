@@ -26,6 +26,7 @@ export const CANVAS_HEIGHT = canvas.height = 500;
 
 let params = (new URL(document.location)).searchParams;
 let nickname = params.get("user");
+let user_id = params.get("id");
 
 const snake = new Snake(50, 50);
 const fruit = new Fruits(10, 10);
@@ -46,12 +47,12 @@ fetch('/leaderboard_content')
         let final_data = [];
         for (let i = 0; i < data.length; i++){
             let el = data[i].split(',');
+            if(el[2] == user_id){
+                highscore_disp.innerText = el[1];
+            }
             final_data.push(el);
         }
-        console.log(final_data);
         let sorted_data = final_data.sort((a, b) => b[1] - a[1]);
-
-        console.log(sorted_data);
 
         for (let i = 0; i < sorted_data.length - 1; i++){
             let leaders = document.getElementById("leaders");
@@ -171,14 +172,19 @@ hard_btn.addEventListener("click",(e)=>{
     difficulty_choose_div.style.display="none";
 });
 
+const fps = 4;
+
 function draw(){
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    map.DrawBackground(ctx);
     [highscore, points] = snake.Update(ctx, highscore, points);
     points = fruit.Update(ctx, snake, points);
+    map.DrawBackground(ctx);
+    map.UpdateSnakePos(ctx, snake);
+    map.UpdateFruitPos(ctx, fruit);
     UpdatePoints();
-    UpdateHighscore();
-    requestAnimationFrame(draw);
+    setTimeout(()=> {
+        requestAnimationFrame(draw);
+    }, 1000/fps);
 };
 
 function UpdatePoints(){
@@ -192,5 +198,6 @@ function UpdateHighscore(){
 export function RandomNumberGenerator(max){
     return Math.floor(Math.random() * max);
 };
+
 
 draw();

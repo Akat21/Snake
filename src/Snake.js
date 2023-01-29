@@ -6,11 +6,12 @@ export default class Snake{
         this.height = height;
         this.gameOver = false;
         this.dir = "";
-        [this.x, this.y] = this.Center();
+        this.position_x = (CANVAS_WIDTH / 50) / 2;
+        this.position_y = (CANVAS_HEIGHT / 50) / 5;
     };
 
     Update(ctx, highscore, points){
-        this.Draw(ctx);
+        // this.Draw(ctx);
         this.CheckKeyPressed();
         this.DirMap();
         this.SetBoundries();
@@ -18,19 +19,12 @@ export default class Snake{
         return [highscore, points];
     };
 
-    Draw(ctx){
+    Draw(ctx, x, y, width, height){
         ctx.fillStyle = "blue";
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-    };
-
-    Center() {
-        let x = (CANVAS_WIDTH - this.width) / 2;
-        let y = (CANVAS_HEIGHT - this.height) / 2;
-        return [x, y]
+        ctx.fillRect(x, y, width, height);
     };
 
     Reset(){
-        [this.x, this.y] = this.Center();
         this.gameOver = false;
         this.dir = "";
         return 0;
@@ -51,10 +45,10 @@ export default class Snake{
     };
 
     SetBoundries(){
-        if (((this.x + this.width) > CANVAS_WIDTH) || (this.x < 0)){
+        if (((this.position_x) > (CANVAS_WIDTH / 50) - 1) || (this.position_x < 0)){
             this.gameOver = true;
         }
-        else if (((this.y + this.height) > CANVAS_HEIGHT) || (this.y < 0)){
+        else if (((this.position_y) > (CANVAS_HEIGHT / 50) - 1) || (this.position_y < 0)){
             this.gameOver = true;
         }
     };
@@ -67,16 +61,16 @@ export default class Snake{
 
     DirMap(){
         if (this.dir === "left"){
-            this.x--;
+            this.position_x--;
         }
         else if (this.dir === "right"){
-            this.x++;
+            this.position_x++;
         }
         else if (this.dir === "down"){
-            this.y++;
+            this.position_y++;
         }
         else if (this.dir === "up"){
-            this.y--;
+            this.position_y--;
         }
     };
 
