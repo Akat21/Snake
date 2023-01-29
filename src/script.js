@@ -49,17 +49,16 @@ fetch('/leaderboard_content')
             final_data.push(el);
         }
         console.log(final_data);
-        // let sorted_data = data.sort((a, b) => b[1] - a[1]);
+        let sorted_data = final_data.sort((a, b) => b[1] - a[1]);
 
         console.log(sorted_data);
-        for (let i = 0; i < data.length - 1; i++){
+
+        for (let i = 0; i < sorted_data.length - 1; i++){
             let leaders = document.getElementById("leaders");
             let element = document.createElement("li");
-            element.innerText = data[i].split(',').slice(0,2);
+            element.innerText = sorted_data[i].slice(0,2);
             leaders.append(element)
         }
-        //tutaj stworzyc liste obiektow wyswietlic we froncie w divie leaderboar TODO
-        console.log(data);
 });
 
 
@@ -164,7 +163,7 @@ medium_btn.addEventListener("click",(e)=>{
 
 hard_btn.addEventListener("click",(e)=>{
     console.log(medium_btn.style.background);
-    difficulty_btn.style.background = "url('./assets/hard.jpg')";
+    difficulty_btn.style.background = "url('../assets/hard.jpg')";
     difficulty_btn.style.backgroundSize = "100% 100%";
     let difficulty_choose_div = document.getElementById("difficulty--choose");
     let popup_background = document.getElementById("popup--background");
