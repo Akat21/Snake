@@ -43,6 +43,21 @@ fetch('/leaderboard_content')
     .then(response => response.text())
     .then(data => {
         data = data.split(';');
+        let final_data = [];
+        for (let i = 0; i < data.length; i++){
+            let el = data[i].split(',');
+            final_data.push(el);
+        }
+        console.log(final_data);
+        // let sorted_data = data.sort((a, b) => b[1] - a[1]);
+
+        console.log(sorted_data);
+        for (let i = 0; i < data.length - 1; i++){
+            let leaders = document.getElementById("leaders");
+            let element = document.createElement("li");
+            element.innerText = data[i].split(',').slice(0,2);
+            leaders.append(element)
+        }
         //tutaj stworzyc liste obiektow wyswietlic we froncie w divie leaderboar TODO
         console.log(data);
 });
