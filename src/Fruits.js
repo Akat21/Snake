@@ -17,9 +17,8 @@ export default class Fruits{
     };
     
     Draw(ctx, x, y, width, height){
-        // ctx.fillStyle = "red";
-        // ctx.fillRect(x, y, width, height);
         make_fruit(x, y, width, height);
+
     };
 
     FindFruitCollision(snake){
