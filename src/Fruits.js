@@ -1,4 +1,4 @@
-import { CANVAS_WIDTH, CANVAS_HEIGHT, RandomNumberGenerator } from "./script.js";
+import { CANVAS_WIDTH, CANVAS_HEIGHT, RandomNumberGenerator, make_fruit} from "./script.js";
 
 export default class Fruits{
     constructor(width, height){
@@ -17,8 +17,9 @@ export default class Fruits{
     };
     
     Draw(ctx, x, y, width, height){
-        ctx.fillStyle = "red";
-        ctx.fillRect(x, y, width, height);
+        // ctx.fillStyle = "red";
+        // ctx.fillRect(x, y, width, height);
+        make_fruit(x, y, width, height);
     };
 
     FindFruitCollision(snake){

@@ -19,7 +19,7 @@ router.post('/', (req, res)=>{
     else{
         fs.writeFileSync('./database/leaderboard.txt', req.body.nickname + ",0," + id + ';', 'utf-8');
     }
-    res.redirect('game/?user=' + req.body.nickname + '&id=' + id);
+    res.redirect('game/?user=' + req.body.nickname + '&id=' + id + '&df=' + 1);
 })
 
 function RandomNumberGenerator(max){

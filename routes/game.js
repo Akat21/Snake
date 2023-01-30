@@ -4,6 +4,8 @@ const fs = require('fs');
 
 let curr_user_id = 0;
 let curr_user_name = "";
+let nickname = '';
+// let diff = 1;
 
 router.use((req, res, next)=>{
     next();
@@ -12,10 +14,12 @@ router.use((req, res, next)=>{
 router.get('/', (req, res)=>{
     curr_user_name = req.query.user;
     curr_user_id = req.query.id;
+    diff = req.query.diff;
     res.render("game",{});
 });
 
 router.post('/', (req, res)=>{
+    let diff = 1;
     if(req.body.nickname){
         if(fs.existsSync('./database/leaderboard.txt')){
             let data = fs.readFileSync('./database/leaderboard.txt', 'utf-8').split(';');
@@ -54,6 +58,9 @@ router.post('/', (req, res)=>{
             fs.writeFileSync('./database/leaderboard.txt', data, 'utf-8');
         }    
     }
-    res.redirect('game/?user=' + nickname + '&id=' + curr_user_id);
+    if(req.body.diff){
+        diff = req.body.diff;
+    }
+    res.redirect('game/?user=' + nickname + '&id=' + curr_user_id + '&df=' + diff);
 });
 module.exports = router;

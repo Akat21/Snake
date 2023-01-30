@@ -1,4 +1,4 @@
-import { CANVAS_HEIGHT, CANVAS_WIDTH } from "./script.js";
+import { CANVAS_HEIGHT, CANVAS_WIDTH,tail_down,tail_left,tail_right,tail_up, body_topright, body_topleft ,body_bottomright ,body_bottomleft,snake_head_up, snake_head_down, snake_head_left, snake_head_right, snake_body_horizontal, snake_body_vertical } from "./script.js";
 
 export default class Snake{
     constructor(width, height){
@@ -17,6 +17,7 @@ export default class Snake{
     };
 
     Update(ctx, highscore, points){
+        this.prevDir = this.dir;
         this.CheckKeyPressed();
         this.DirMap();
         this.SetBoundries();
@@ -25,38 +26,110 @@ export default class Snake{
     };
 
     Draw(ctx, x, y, width, height){
-        ctx.fillStyle = "blue";
-        ctx.fillRect(x, y, width, height);
+        if (this.dir === "up"){
+            snake_head_up(x, y, width, height);
+        }
+        else if (this.dir ==="down"){
+            snake_head_down(x,y,width,height);
+        }
+        else if (this.dir === "left"){
+            snake_head_left(x,y,width,height);
+        }
+        else if (this.dir === "right"){
+            snake_head_right(x,y,width,height);
+        }
+        else{
+            snake_head_up(x, y, width, height);
+        }
     };
 
     DrawTail(ctx, x, y, width, height){
         if (this.tailLength > 0){
 
             let [_x, _y] = this.AddTailPosition(this.dir, this.position_x, this.position_y);
+            let temp = 0;
             this.tailPosition_x[0] = _x;
             this.tailPosition_y[0] = _y;
 
-            //CZY POZNIEJ CZY NIE
 
             if (this.tailLength > 1){
-                let [_x, _y] = this.AddTailPosition(
-                    this.tailDirs[this.tailDirs.length - 1],
-                    this.tailPosition_x[this.tailLength - 1],
-                    this.tailPosition_y[this.tailLength - 1]);
-                this.tailPosition_x[1] = _x;
-                this.tailPosition_y[1] = _y;
-
-                this.tailDirs[1] = this.tailDirs[0];
+                for(let iter = this.tailLength; iter >= 2; iter--){
+                    for (let i = iter; i > 1; i--){
+                        let [_x, _y] = this.AddTailPosition(
+                            this.tailDirs[this.tailDirs.length - i],
+                            this.tailPosition_x[this.tailLength - i],
+                            this.tailPosition_y[this.tailLength - i]);
+                        this.tailPosition_x[this.tailLength - (i-1)] = _x;
+                        this.tailPosition_y[this.tailLength - (i-1)] = _y;      
+                    }
+                }
             }
-            
-            this.tailDirs[0] = this.dir;
 
-            console.log(this.dir, this.tailDirs);
+            this.tailDirs.splice(0, 0, this.dir);
+            this.tailDirs.pop();
 
             for (let i = 0; i < this.tailLength; i++){
-                ctx.fillStyle = "blue";
-                ctx.fillRect(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50);
+                if (i < this.tailLength - 1){
+                    if(this.tailDirs[i] === "left" && this.tailDirs[i+1] === "up"){
+                        body_bottomleft(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50);
+                    }
+                    else if(this.tailDirs[i] === "down" && this.tailDirs[i+1] === "left"){
+                        body_bottomright(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50);
+                    }
+                    else if(this.tailDirs[i] === "up" && this.tailDirs[i+1] === "right"){
+                        body_topleft(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50);
+                    }
+                    else if(this.tailDirs[i] === "right" && this.tailDirs[i+1] === "down"){
+                        body_topright(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50);
+                    }
+                    else if(this.tailDirs[i] === "right" && this.tailDirs[i+1] === "up"){
+                        body_bottomright(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50);
+                    }
+                    else if(this.tailDirs[i] === "down" && this.tailDirs[i+1] === "right"){
+                        body_bottomleft(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50);
+                    }
+                    else if(this.tailDirs[i] === "left" && this.tailDirs[i+1] === "down"){
+                        body_topleft(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50);
+                    }
+                    else if(this.tailDirs[i] === "up" && this.tailDirs[i+1] === "left"){
+                        body_topright(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50);
+                    }
+                    else{
+                        if (this.tailDirs[i] === "left" || this.tailDirs[i] === "right"){
+                            snake_body_horizontal(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50)
+                        }
+                        else if(this.tailDirs[i] === "up" || this.tailDirs[i] === "down"){
+                            snake_body_vertical(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50)
+        
+                        }
+                    }
+                }
+                else if ((i === (this.tailLength - 1)) && (this.tailLength > 0)){
+                    if(this.tailDirs[i] === "left"){
+                        tail_right(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50);
+                    }
+                    else if(this.tailDirs[i] === "right"){
+                        tail_left(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50);
+                    }
+                    else if(this.tailDirs[i] === "down"){
+                        tail_up(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50);
+                    }
+                    else if(this.tailDirs[i] === "up"){
+                        tail_down(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50);
+                    }
+                }
+                else{
+                    if (this.tailDirs[i] === "left" || this.tailDirs[i] === "right"){
+                        snake_body_horizontal(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50)
+                    }
+                    else if(this.tailDirs[i] === "up" || this.tailDirs[i] === "down"){
+                        snake_body_vertical(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50)
+    
+                    }
+                }
+                // ctx.fillRect(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50);
             }
+
         }
     }
 
@@ -82,7 +155,7 @@ export default class Snake{
     };
 
     isOver(highscore, points){
-        if (this.gameOver === true){
+        if ((this.gameOver === true) || (this.SelfTouch() === true)){
             let game_over_screen = document.getElementById("game--over");
             game_over_screen.style.display = "block";
             let popup_background = document.getElementById("popup--background");
@@ -94,6 +167,15 @@ export default class Snake{
         }
         return [highscore, points];
     };
+
+    SelfTouch(){
+        for (let i = 0; i < this.tailLength; i++){
+            if ((this.tailPosition_x[i] === this.position_x) && (this.tailPosition_y[i] === this.position_y)){
+                return true;
+            }
+        }
+        return false;
+    }
 
     SetBoundries(){
         if (((this.position_x) > (CANVAS_WIDTH / 50) - 1) || (this.position_x < 0)){
@@ -126,17 +208,75 @@ export default class Snake{
     };
 
     KeyMap(e){
-        if (e.key === "ArrowLeft"){
-            this.dir = "left";
+        if (this.prevDir === "left"){
+            if (e.key === "ArrowLeft"){
+                this.dir = "left";
+            }
+            else if (e.key === "ArrowRight"){
+                this.dir = "left";
+            }
+            else if (e.key === "ArrowDown"){
+                this.dir = "down";
+            }
+            else if (e.key === "ArrowUp"){
+                this.dir = "up";
+            }
         }
-        else if (e.key === "ArrowRight"){
-            this.dir = "right";
+        else if (this.prevDir === "right"){
+            if (e.key === "ArrowLeft"){
+                this.dir = "right";
+            }
+            else if (e.key === "ArrowRight"){
+                this.dir = "right";
+            }
+            else if (e.key === "ArrowDown"){
+                this.dir = "down";
+            }
+            else if (e.key === "ArrowUp"){
+                this.dir = "up";
+            }
         }
-        else if (e.key === "ArrowDown"){
-            this.dir = "down";
+        else if (this.prevDir === "up"){
+            if (e.key === "ArrowLeft"){
+                this.dir = "left";
+            }
+            else if (e.key === "ArrowRight"){
+                this.dir = "right";
+            }
+            else if (e.key === "ArrowDown"){
+                this.dir = "up";
+            }
+            else if (e.key === "ArrowUp"){
+                this.dir = "up";
+            }
         }
-        else if (e.key === "ArrowUp"){
-            this.dir = "up";
+        else if (this.prevDir === "down"){
+            if (e.key === "ArrowLeft"){
+                this.dir = "left";
+            }
+            else if (e.key === "ArrowRight"){
+                this.dir = "right";
+            }
+            else if (e.key === "ArrowDown"){
+                this.dir = "down";
+            }
+            else if (e.key === "ArrowUp"){
+                this.dir = "down";
+            }
+        }
+        else{
+            if (e.key === "ArrowLeft"){
+                this.dir = "left";
+            }
+            else if (e.key === "ArrowRight"){
+                this.dir = "right";
+            }
+            else if (e.key === "ArrowDown"){
+                this.dir = "down";
+            }
+            else if (e.key === "ArrowUp"){
+                this.dir = "up";
+            }
         }
     };
 

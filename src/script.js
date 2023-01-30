@@ -27,6 +27,7 @@ export const CANVAS_HEIGHT = canvas.height = 500;
 let params = (new URL(document.location)).searchParams;
 let nickname = params.get("user");
 let user_id = params.get("id");
+let diff = params.get("df");
 
 const snake = new Snake(50, 50);
 const fruit = new Fruits(10, 10);
@@ -36,8 +37,12 @@ const points_disp = document.getElementById("points");
 const highscore_disp = document.getElementById("highscore--disp");
 let points = 0;
 let highscore = 0;
+let difficulty = 1;
 
 let leaderboard_data;
+
+Diff_Btn_Choose(diff);
+
 
 //load file content from backend
 fetch('/leaderboard_content')
@@ -148,8 +153,11 @@ easy_btn.addEventListener("click",(e)=>{
     difficulty_btn.style.backgroundSize = "100% 100%";
     let difficulty_choose_div = document.getElementById("difficulty--choose");
     let popup_background = document.getElementById("popup--background");
+    let diff_save = document.getElementById("diff--save");
     popup_background.style.display="none";
     difficulty_choose_div.style.display="none";
+    difficulty = 1;
+    diff_save.value = difficulty;
 });
 
 medium_btn.addEventListener("click",(e)=>{
@@ -158,8 +166,11 @@ medium_btn.addEventListener("click",(e)=>{
     difficulty_btn.style.backgroundSize = "100% 100%";
     let difficulty_choose_div = document.getElementById("difficulty--choose");
     let popup_background = document.getElementById("popup--background");
+    let diff_save = document.getElementById("diff--save");
     popup_background.style.display="none";
     difficulty_choose_div.style.display="none";
+    difficulty = 2;
+    diff_save.value = difficulty;
 });
 
 hard_btn.addEventListener("click",(e)=>{
@@ -168,24 +179,165 @@ hard_btn.addEventListener("click",(e)=>{
     difficulty_btn.style.backgroundSize = "100% 100%";
     let difficulty_choose_div = document.getElementById("difficulty--choose");
     let popup_background = document.getElementById("popup--background");
+    let diff_save = document.getElementById("diff--save");
     popup_background.style.display="none";
     difficulty_choose_div.style.display="none";
+    difficulty = 3;
+    diff_save.value = difficulty;
 });
 
-const fps = 4;
 
 function draw(){
+    const fps = 4 * difficulty;
+
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     [highscore, points] = snake.Update(ctx, highscore, points);
-    points = fruit.Update(ctx, snake, points);
     map.DrawBackground(ctx);
     map.UpdateSnakePos(ctx, snake);
     map.UpdateFruitPos(ctx, fruit);
     UpdatePoints();
+    points = fruit.Update(ctx, snake, points);
     setTimeout(()=> {
-        requestAnimationFrame(draw);
+        window.requestAnimationFrame(draw);
     }, 1000/fps);
 };
+
+
+function Diff_Btn_Choose(diff){
+    if(diff === '1'){
+        difficulty_btn.style.background = "url('../assets/easy.jpg')";
+        difficulty_btn.style.backgroundSize = "100% 100%";
+    }
+    else if(diff === '2'){
+        console.log("ESSA?")
+        difficulty_btn.style.background = "url('../assets/medium.jpg')";
+        difficulty_btn.style.backgroundSize = "100% 100%";
+    }
+    else if(diff === '3'){
+        difficulty_btn.style.background = "url('../assets/hard.jpg')";
+        difficulty_btn.style.backgroundSize = "100% 100%";
+    }
+}
+
+export function make_fruit(x, y, width, height){
+    const fruit_image = new Image();
+    fruit_image.src = '/assets/apple1.png';
+    fruit_image.onload = function(){
+        ctx.drawImage(fruit_image, x, y, width, height * fruit_image.height / fruit_image.width);
+    }
+}
+
+export function snake_head_up(x, y, width, height){
+    const snake_image = new Image();
+    snake_image.onload = function(){
+        ctx.drawImage(snake_image, x, y, width, height * snake_image.height / snake_image.width);
+    }
+    snake_image.src = '/assets/head_up.png';
+}
+
+export function snake_head_down(x, y, width, height){
+    const snake_image = new Image();
+    snake_image.onload = function(){
+        ctx.drawImage(snake_image, x, y, width, height * snake_image.height / snake_image.width);
+    }
+    snake_image.src = '/assets/head_down.png';
+}
+
+export function snake_head_left(x, y, width, height){
+    const snake_image = new Image();
+    snake_image.onload = function(){
+        ctx.drawImage(snake_image, x, y, width, height * snake_image.height / snake_image.width);
+    }
+    snake_image.src = '/assets/head_left.png';
+}
+
+export function snake_head_right(x, y, width, height){
+    const snake_image = new Image();
+    snake_image.onload = function(){
+        ctx.drawImage(snake_image, x, y, width, height * snake_image.height / snake_image.width);
+    }
+    snake_image.src = '/assets/head_right.png';
+}
+
+export function snake_body_horizontal(x, y, width, height){
+    const snake_image = new Image();
+    snake_image.onload = function(){
+        ctx.drawImage(snake_image, x, y, width, height * snake_image.height / snake_image.width);
+    }
+    snake_image.src = '/assets/body_horizontal.png';
+}
+
+export function snake_body_vertical(x, y, width, height){
+    const snake_image = new Image();
+    snake_image.onload = function(){
+        ctx.drawImage(snake_image, x, y, width, height * snake_image.height / snake_image.width);
+    }
+    snake_image.src = '/assets/body_vertical.png';
+}
+
+export function body_bottomleft(x, y, width, height){
+    const snake_image = new Image();
+    snake_image.onload = function(){
+        ctx.drawImage(snake_image, x, y, width, height * snake_image.height / snake_image.width);
+    }
+    snake_image.src = '/assets/body_bottomleft.png';
+}
+
+export function body_bottomright(x, y, width, height){
+    const snake_image = new Image();
+    snake_image.onload = function(){
+        ctx.drawImage(snake_image, x, y, width, height * snake_image.height / snake_image.width);
+    }
+    snake_image.src = '/assets/body_bottomright.png';
+}
+
+export function body_topleft(x, y, width, height){
+    const snake_image = new Image();
+    snake_image.onload = function(){
+        ctx.drawImage(snake_image, x, y, width, height * snake_image.height / snake_image.width);
+    }
+    snake_image.src = '/assets/body_topleft.png';
+}
+
+export function body_topright(x, y, width, height){
+    const snake_image = new Image();
+    snake_image.onload = function(){
+        ctx.drawImage(snake_image, x, y, width, height * snake_image.height / snake_image.width);
+    }
+    snake_image.src = '/assets/body_topright.png';
+}
+
+export function tail_up(x, y, width, height){
+    const snake_image = new Image();
+    snake_image.onload = function(){
+        ctx.drawImage(snake_image, x, y, width, height * snake_image.height / snake_image.width);
+    }
+    snake_image.src = '/assets/tail_up.png';
+}
+
+export function tail_down(x, y, width, height){
+    const snake_image = new Image();
+    snake_image.onload = function(){
+        ctx.drawImage(snake_image, x, y, width, height * snake_image.height / snake_image.width);
+    }
+    snake_image.src = '/assets/tail_down.png';
+}
+
+export function tail_left(x, y, width, height){
+    const snake_image = new Image();
+    snake_image.onload = function(){
+        ctx.drawImage(snake_image, x, y, width, height * snake_image.height / snake_image.width);
+    }
+    snake_image.src = '/assets/tail_left.png';
+}
+
+export function tail_right(x, y, width, height){
+    const snake_image = new Image();
+    snake_image.onload = function(){
+        ctx.drawImage(snake_image, x, y, width, height * snake_image.height / snake_image.width);
+    }
+    snake_image.src = '/assets/tail_right.png';
+}
 
 function UpdatePoints(){
     points_disp.innerText = `${points}`;
