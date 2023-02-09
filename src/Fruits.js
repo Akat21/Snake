@@ -1,11 +1,13 @@
-import { CANVAS_WIDTH, CANVAS_HEIGHT, RandomNumberGenerator, make_fruit} from "./script.js";
+import {RandomNumberGenerator, make_fruit} from "./script.js";
+import * as cvs from "./constants/values.js";
+
 
 export default class Fruits{
     constructor(width, height){
         this.width = width;
         this.height = height;
-        this.position_x = RandomNumberGenerator(CANVAS_WIDTH / 50);
-        this.position_y = RandomNumberGenerator(CANVAS_HEIGHT / 50);
+        this.position_x = RandomNumberGenerator(cvs.CANVAS_WIDTH / 50);
+        this.position_y = RandomNumberGenerator(cvs.CANVAS_HEIGHT / 50);
     };
 
     Update(ctx, snake, points){
@@ -23,8 +25,8 @@ export default class Fruits{
 
     FindFruitCollision(snake){
         if((this.position_x === snake.position_x) && (this.position_y === snake.position_y)){
-            this.position_x = RandomNumberGenerator(CANVAS_WIDTH / 50);
-            this.position_y = RandomNumberGenerator(CANVAS_HEIGHT / 50);
+            this.position_x = RandomNumberGenerator(cvs.CANVAS_WIDTH / 50);
+            this.position_y = RandomNumberGenerator(cvs.CANVAS_HEIGHT / 50);
             
             if (snake.tailLength === 0){
 

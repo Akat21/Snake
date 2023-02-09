@@ -7,8 +7,10 @@
     <title>Snake</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div id="popup--background"></div>
+
     <div id="popup--login">
         <h1 id="title"><span id="fancy--s">S</span> NAKE</h1>
         <div id="avatar--login">
@@ -23,9 +25,10 @@
             <button id="start--btn" type="submit"></button>
         </form>
     </div>
+
     <nav id="navbar">
         <div class="game--features">
-            <button class="map--btn"></button>
+            <button id="map--btn"></button>
             <button id="difficulty--btn"></button>
         </div>
         <div class="game--additions">
@@ -45,6 +48,7 @@
             </div>
         </div>
     </nav>
+
     <div id="difficulty--choose">
         <h1>Difficulty</h1>
         <button id="close--difficulty--btn"></button>
@@ -52,10 +56,12 @@
         <button id="medium--diff--btn"></button>
         <button id="hard--diff--btn"></button>
     </div>
+
     <div id="leaderboard--popup">
         <h1>Leaderboard</h1>
         <button id="close--leaderboard--btn"></button>
     </div>
+
     <div class="score">
         <div class="actual--score">
             <img class="score--img" src="./assets/apple.png" alt="score"/>
@@ -66,6 +72,7 @@
             <h1 id="highscore--disp">0</h1>
         </div>
     </div>
+    
     <canvas id="canv"></canvas>
     <script type="module" src="./script.js"></script>
 </body>

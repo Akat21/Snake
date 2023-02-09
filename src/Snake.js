@@ -1,4 +1,5 @@
-import { CANVAS_HEIGHT, CANVAS_WIDTH,tail_down,tail_left,tail_right,tail_up, body_topright, body_topleft ,body_bottomright ,body_bottomleft,snake_head_up, snake_head_down, snake_head_left, snake_head_right, snake_body_horizontal, snake_body_vertical } from "./script.js";
+import {tail_down,tail_left,tail_right,tail_up, body_topright, body_topleft ,body_bottomright ,body_bottomleft,snake_head_up, snake_head_down, snake_head_left, snake_head_right, snake_body_horizontal, snake_body_vertical } from "./script.js";
+import * as cvs from "./constants/values.js";
 
 export default class Snake{
     constructor(width, height){
@@ -7,8 +8,8 @@ export default class Snake{
         this.gameOver = false;
         this.dir = "";
         this.prevDir = "";
-        this.position_x = (CANVAS_WIDTH / 50) / 2;
-        this.position_y = (CANVAS_HEIGHT / 50) / 5;
+        this.position_x = (cvs.CANVAS_WIDTH / 50) / 2;
+        this.position_y = (cvs.CANVAS_HEIGHT / 50) / 5;
 
         this.tailLength = 0;
         this.tailDirs = [];
@@ -178,10 +179,10 @@ export default class Snake{
     }
 
     SetBoundries(){
-        if (((this.position_x) > (CANVAS_WIDTH / 50) - 1) || (this.position_x < 0)){
+        if (((this.position_x) > (cvs.CANVAS_WIDTH / 50) - 1) || (this.position_x < 0)){
             this.gameOver = true;
         }
-        else if (((this.position_y) > (CANVAS_HEIGHT / 50) - 1) || (this.position_y < 0)){
+        else if (((this.position_y) > (cvs.CANVAS_HEIGHT / 50) - 1) || (this.position_y < 0)){
             this.gameOver = true;
         }
     };

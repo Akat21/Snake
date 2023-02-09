@@ -1,4 +1,4 @@
-const {Diff_Btn_Choose,AddTailPosition, RandomNumberGenerator} = require('./to_test.js');
+const {Diff_Btn_Choose, AddTailPosition, RandomNumberGenerator} = require('./to_test.js');
 
 test('should output difficulty chosen', ()=>{
     const diff = Diff_Btn_Choose('2');

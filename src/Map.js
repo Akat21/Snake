@@ -1,11 +1,12 @@
-import { CANVAS_HEIGHT, CANVAS_WIDTH } from "./script.js";
+import * as cvs from "./constants/values.js";
+
 
 export default class Map{
     constructor(){
         this.width = 50;
         this.height = 50;
-        this.x_field_num = CANVAS_WIDTH / 50;
-        this.y_field_num = CANVAS_HEIGHT / 50;
+        this.x_field_num = cvs.CANVAS_WIDTH / 50;
+        this.y_field_num = cvs.CANVAS_HEIGHT / 50;
     };
 
     DrawBackground(ctx){
