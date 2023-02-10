@@ -1,4 +1,5 @@
-import {RandomNumberGenerator, make_fruit} from "./script.js";
+import {RandomNumberGenerator} from "./script.js";
+import { make_fruit } from "./utils/SnakeAnimations.js";
 import * as cvs from "./constants/values.js";
 
 
