@@ -4,7 +4,7 @@ body{
 }
 
 html { 
-    background: url(./assets/snake_background.jpg) no-repeat center center fixed; 
+    background: url(../assets/snake_background.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -85,7 +85,7 @@ html {
 #difficulty--btn{
     width: 80px;
     height: 80px;
-    background: url('./assets/easy.jpg');
+    background: url('../assets/easy.jpg');
     background-size: 100% 100%;
     border: 1.5px solid black;
     border-radius: 7px;
@@ -100,7 +100,7 @@ html {
 #leaderboard--btn{
     width: 80px;
     height: 80px;
-    background: url('./assets/leaderboard.png');
+    background: url('../assets/leaderboard.png');
     background-size: 100% 100%;
     border: none;
     cursor: pointer;
@@ -115,7 +115,7 @@ html {
 #settings--btn{
     width: 80px;
     height: 80px;
-    background: url('./assets/Settings.png');
+    background: url('../assets/Settings.png');
     background-size: 100% 100%;
     border: none;
     cursor: pointer;
@@ -164,7 +164,7 @@ html {
 #settings--name--edit--btn{
     z-index: 102;
     margin-top: 20px;
-    background: url('./assets/editable.png');
+    background: url('../assets/editable.png');
     background-size: 70% 70%;
     background-repeat: no-repeat;
     background-position: center;
@@ -183,7 +183,7 @@ html {
     z-index: 102;
     margin-left: -29px;
     margin-top: 49px;
-    background: url('./assets/editable.png');
+    background: url('../assets/editable.png');
     background-size: 70% 70%;
     background-repeat: no-repeat;
     background-position: center;
@@ -223,7 +223,7 @@ html {
 #confirm--btn{
     display: none;
     margin-top: 10px;
-    background: url('./assets/start_icon.png');
+    background: url('../assets/start_icon.png');
     background-size: 70% 70%;
     background-repeat: no-repeat;
     background-position: 7px;
@@ -262,7 +262,7 @@ html {
     top: 0;
     right: 0;
     position: absolute;
-    background: url('./assets/x.png');
+    background: url('../assets/x.png');
     width: 30px;
     height: 30px;
     border: none;
@@ -292,7 +292,7 @@ html {
     top: 0;
     right: 0;
     position: absolute;
-    background: url('./assets/x.png');
+    background: url('../assets/x.png');
     width: 30px;
     height: 30px;
     border: none;
@@ -303,7 +303,7 @@ html {
 
 #easy--diff--btn{
     margin-top: -8px;
-    background: url('./assets/easy_full.jpg');
+    background: url('../assets/easy_full.jpg');
     background-size: 100% 100%;
     width: 350px;
     height: 165px;
@@ -320,7 +320,7 @@ html {
 
 #medium--diff--btn{
     margin: 10px;
-    background: url('./assets/medium_full.jpg');
+    background: url('../assets/medium_full.jpg');
     background-size: 100% 100%;
     width: 350px;
     height: 165px;
@@ -336,7 +336,7 @@ html {
 }
 
 #hard--diff--btn{
-    background: url('./assets/hard_full.jpg');
+    background: url('../assets/hard_full.jpg');
     background-size: 100% 100%;
     width: 350px;
     height: 165px;
@@ -400,7 +400,7 @@ html {
 #avatar--login--btn{
     z-index: 102;
     margin-left: -95px;
-    background: url('./assets/editable.png');
+    background: url('../assets/editable.png');
     background-size: 70% 70%;
     background-repeat: no-repeat;
     background-position: center;
@@ -450,7 +450,7 @@ html {
 
 #start--btn{
     margin-top: 55px;
-    background: url('./assets/start_icon.png');
+    background: url('../assets/start_icon.png');
     background-size: 70% 70%;
     background-repeat: no-repeat;
     background-position: 14px;
@@ -482,7 +482,7 @@ html {
 }
 
 #restart--btn{
-    background: url('./assets/start_icon.png');
+    background: url('../assets/start_icon.png');
     background-size: 70% 70%;
     background-repeat: no-repeat;
     background-position: 14px;

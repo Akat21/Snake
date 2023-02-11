@@ -1,6 +1,6 @@
 import {RandomNumberGenerator} from "./script.js";
-import { make_fruit } from "./utils/SnakeAnimations.js";
-import * as cvs from "./constants/values.js";
+import { make_fruit } from "../utils/SnakeAnimations.js";
+import * as cvs from "../constants/values.js";
 
 
 export default class Fruits{

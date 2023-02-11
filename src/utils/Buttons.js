@@ -1,7 +1,7 @@
 import * as btn from "../constants/buttons.js";
 import * as input from "../constants/inputs.js";
 import * as label from "../constants/labels.js";
-import { highscore, difficulty } from "../script.js";
+import { highscore, difficulty } from "../static/script.js";
 import { diff } from "./Query.js";
 
 export function ButtonsInit(){

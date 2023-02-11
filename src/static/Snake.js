@@ -1,5 +1,5 @@
-import {tail_down,tail_left,tail_right,tail_up, body_topright, body_topleft ,body_bottomright ,body_bottomleft,snake_head_up, snake_head_down, snake_head_left, snake_head_right, snake_body_horizontal, snake_body_vertical } from "./utils/SnakeAnimations.js";
-import * as cvs from "./constants/values.js";
+import {tail_down,tail_left,tail_right,tail_up, body_topright, body_topleft ,body_bottomright ,body_bottomleft,snake_head_up, snake_head_down, snake_head_left, snake_head_right, snake_body_horizontal, snake_body_vertical } from "../utils/SnakeAnimations.js";
+import * as cvs from "../constants/values.js";
 
 export default class Snake{
     constructor(width, height){

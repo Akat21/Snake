@@ -1,4 +1,4 @@
-import * as cvs from "./constants/values.js";
+import * as cvs from "../constants/values.js";
 
 
 export default class Map{
