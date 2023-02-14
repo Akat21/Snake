@@ -1,14 +1,8 @@
-import Snake from "./Snake.js";
-import Fruits from "./Fruits.js";
-import Map from "./Map.js";
 import * as cvs from "../constants/values.js";
 import { ButtonsInit } from "../utils/Buttons.js";
 import { InputsInit } from "../utils/Inputs.js";
 import { LeaderboardDataPass } from "../utils/DatabaseManagement.js";
-
-const snake = new Snake(50, 50);
-const fruit = new Fruits(10, 10);
-const map = new Map();
+import { snake, fruit, map } from "../constants/values.js";
 
 let points = 0;
 let difficulty = 1;

@@ -1,5 +1,5 @@
 import {tail_down,tail_left,tail_right,tail_up, body_topright, body_topleft ,body_bottomright ,body_bottomleft,snake_head_up, snake_head_down, snake_head_left, snake_head_right, snake_body_horizontal, snake_body_vertical } from "../utils/SnakeAnimations.js";
-import * as cvs from "../constants/values.js";
+import {ctx, CANVAS_HEIGHT, CANVAS_WIDTH} from "../constants/values.js";
 import * as label from "../constants/labels.js";
 
 export default class Snake{
@@ -9,10 +9,10 @@ export default class Snake{
         this.gameOver = false;
         this.dir = "";
         this.prevDir = "";
-        this.position_x = (cvs.CANVAS_WIDTH / 50) / 2;
-        this.position_y = (cvs.CANVAS_HEIGHT / 50) / 5;
+        this.position_x = (CANVAS_WIDTH / 50) / 2;
+        this.position_y = (CANVAS_HEIGHT / 50) / 5;
 
-        this.highscore = 0;
+        this.highscore = 0; //USTAW HIGHSCORE Z FETCHA
         this.points = 0;
         this.tailLength = 0;
         this.tailDirs = [];
@@ -168,15 +168,15 @@ export default class Snake{
             popup_background.style.display = "block";
             if (this.highscore < this.points){
                 this.highscore = this.points;
+                console.log(this.highscore, this.points)
             }
             this.points = this.Reset();
-            this.UpdateHighscore(this.highscore);
         }
     };
 
-    UpdateHighscore(highscore){
-        label.highscore_disp.innerText = `${highscore}`;
-    }
+    // UpdateHighscore(highscore){
+    //     label.highscore_disp.innerText = `${highscore}`;
+    // }
 
     UpdatePoints(points){
         label.points_disp.innerText = `${points}`;
@@ -192,10 +192,10 @@ export default class Snake{
     }
 
     SetBoundries(){
-        if (((this.position_x) > (cvs.CANVAS_WIDTH / 50) - 1) || (this.position_x < 0)){
+        if (((this.position_x) > (CANVAS_WIDTH / 50) - 1) || (this.position_x < 0)){
             this.gameOver = true;
         }
-        else if (((this.position_y) > (cvs.CANVAS_HEIGHT / 50) - 1) || (this.position_y < 0)){
+        else if (((this.position_y) > (CANVAS_HEIGHT / 50) - 1) || (this.position_y < 0)){
             this.gameOver = true;
         }
     };
@@ -218,6 +218,10 @@ export default class Snake{
         }
         else if (this.dir === "up"){
             this.position_y--;
+        }
+        else{
+            this.position_x = 2;
+            this.position_y = 2;
         }
     };
 
