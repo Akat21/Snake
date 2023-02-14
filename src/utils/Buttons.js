@@ -1,8 +1,9 @@
 import * as btn from "../constants/buttons.js";
 import * as input from "../constants/inputs.js";
 import * as label from "../constants/labels.js";
-import { highscore, difficulty } from "../static/script.js";
 import { diff } from "./Query.js";
+
+let difficulty = 1;
 
 export function ButtonsInit(){
     Diff_Btn_Choose(diff);
@@ -29,7 +30,7 @@ export function ButtonsInit(){
         let popup_background = document.getElementById("popup--background");
         let game_over_screen = document.getElementById("game--over");
         let highscore_save = document.getElementById("highscore--save");
-        highscore_save.value = highscore;
+        highscore_save.value = label.highscore_disp.innerText;
         popup_background.style.display = "none";
         game_over_screen.style.display = "none";
     });

@@ -11,12 +11,11 @@ export default class Fruits{
         this.position_y = RandomNumberGenerator(cvs.CANVAS_HEIGHT / 50);
     };
 
-    Update(ctx, snake, points){
+    Update(ctx, snake){
         this.Draw(ctx);
         if (this.FindFruitCollision(snake) === true){
-            points++;
+            snake.points++;
         }
-        return points;
     };
     
     Draw(ctx, x, y, width, height){
@@ -51,8 +50,6 @@ export default class Fruits{
                 snake.tailPosition_x.push(_x);
                 snake.tailPosition_y.push(_y);
 
-                console.log(snake.position_x, snake.position_y);
-                console.log(snake.tailPosition_x, snake.tailPosition_y);
             }
             return true;
         }

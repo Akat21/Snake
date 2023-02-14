@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snake</title>
-    <link rel="stylesheet" href="./static/style.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/navbar.css">
+    <link rel="stylesheet" href="../static/css/login.css">
 </head>
-
 <body>
     <div id="popup--background"></div>
-
     <div id="popup--login">
         <h1 id="title"><span id="fancy--s">S</span> NAKE</h1>
         <div id="avatar--login">
@@ -20,15 +20,14 @@
         <form action="/" method="POST">
             <div id="name">
                 <h1 id="name--label">Enter your nickname:</h1>
-                <input id="name--input"type="text" name="nickname" maxlength="12" onfocus="this.value=''">
+                <input id="name--input" type="text" name="nickname" maxlength="12" onfocus="this.value=''">
             </div>
             <button id="start--btn" type="submit"></button>
         </form>
     </div>
-
     <nav id="navbar">
         <div class="game--features">
-            <button id="map--btn"></button>
+            <!-- <button class="map--btn"></button> -->
             <button id="difficulty--btn"></button>
         </div>
         <div class="game--additions">
@@ -43,25 +42,37 @@
                     <h1 id="settings--name--txt"></h1>
                     <button id="settings--name--edit--btn"></button>
                 </div>
-                <input id="change--name" type="text" maxlength="12" onfocus="this.value=''">
-                <button id="confirm--btn"></button>
+                <form action="/game" method="POST">
+                    <input id="change--name" type="text" name="nickname" maxlength="12" onfocus="this.value=''">
+                    <button id="confirm--btn" type="submit"></button>
+                </form>
             </div>
         </div>
     </nav>
-
+    <div id="game--over">
+        <form action="/game" method="POST">
+            <h1>Try Again!</h1>
+            <input id="highscore--save" type="hidden" name="highscore">
+            <button id="restart--btn" type="submit"></button>
+        </form>
+    </div>
     <div id="difficulty--choose">
         <h1>Difficulty</h1>
         <button id="close--difficulty--btn"></button>
-        <button id="easy--diff--btn"></button>
-        <button id="medium--diff--btn"></button>
-        <button id="hard--diff--btn"></button>
+        <form action="/game" method="POST">
+            <input id="diff--save" type="hidden" name="diff">
+            <button id="easy--diff--btn" type="submit"></button>
+            <button id="medium--diff--btn" type="submit"></button>
+            <button id="hard--diff--btn" type="submit"></button>
+        </form>
     </div>
-
     <div id="leaderboard--popup">
         <h1>Leaderboard</h1>
+        <ol id="leaders">
+            
+        </ol>
         <button id="close--leaderboard--btn"></button>
     </div>
-
     <div class="score">
         <div class="actual--score">
             <img class="score--img" src="../assets/apple.png" alt="score"/>
@@ -72,8 +83,7 @@
             <h1 id="highscore--disp">0</h1>
         </div>
     </div>
-    
     <canvas id="canv"></canvas>
-    <script type="module" src="./static/script.js"></script>
+    <script type="module" src="../static/script.js"></script>
 </body>
 </html>

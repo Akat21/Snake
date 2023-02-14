@@ -1,5 +1,6 @@
 import {tail_down,tail_left,tail_right,tail_up, body_topright, body_topleft ,body_bottomright ,body_bottomleft,snake_head_up, snake_head_down, snake_head_left, snake_head_right, snake_body_horizontal, snake_body_vertical } from "../utils/SnakeAnimations.js";
 import * as cvs from "../constants/values.js";
+import * as label from "../constants/labels.js";
 
 export default class Snake{
     constructor(width, height){
@@ -11,19 +12,21 @@ export default class Snake{
         this.position_x = (cvs.CANVAS_WIDTH / 50) / 2;
         this.position_y = (cvs.CANVAS_HEIGHT / 50) / 5;
 
+        this.highscore = 0;
+        this.points = 0;
         this.tailLength = 0;
         this.tailDirs = [];
         this.tailPosition_x = []
         this.tailPosition_y = []
     };
 
-    Update(ctx, highscore, points){
+    Update(){
         this.prevDir = this.dir;
         this.CheckKeyPressed();
         this.DirMap();
         this.SetBoundries();
-        [highscore, points] = this.isOver(highscore, points);
-        return [highscore, points];
+        this.UpdatePoints(this.points);
+        this.isOver();
     };
 
     Draw(ctx, x, y, width, height){
@@ -128,7 +131,6 @@ export default class Snake{
     
                     }
                 }
-                // ctx.fillRect(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50);
             }
 
         }
@@ -147,27 +149,38 @@ export default class Snake{
         else if(dir === "right"){
             return[position_x - 1, position_y];
         }
+        else{
+            return[position_x, position_y]
+        }
     }
 
     Reset(){
         this.gameOver = false;
-        this.dir = "";
+        this.dir = " ";
         return 0;
     };
 
-    isOver(highscore, points){
+    isOver(){
         if ((this.gameOver === true) || (this.SelfTouch() === true)){
             let game_over_screen = document.getElementById("game--over");
             game_over_screen.style.display = "block";
             let popup_background = document.getElementById("popup--background");
             popup_background.style.display = "block";
-            if (highscore < points){
-                highscore = points;
+            if (this.highscore < this.points){
+                this.highscore = this.points;
             }
-            points = this.Reset();
+            this.points = this.Reset();
+            this.UpdateHighscore(this.highscore);
         }
-        return [highscore, points];
     };
+
+    UpdateHighscore(highscore){
+        label.highscore_disp.innerText = `${highscore}`;
+    }
+
+    UpdatePoints(points){
+        label.points_disp.innerText = `${points}`;
+    }
 
     SelfTouch(){
         for (let i = 0; i < this.tailLength; i++){
