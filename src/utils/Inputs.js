@@ -1,6 +1,6 @@
 import * as input from "../constants/inputs.js";
 import * as label from "../constants/labels.js";
-import { RandomNumberGenerator } from "../static/script.js";
+import { RandomNumberGenerator } from "../constants/values.js";
 import { nickname } from "./Query.js";
 
 export function InputsInit(){

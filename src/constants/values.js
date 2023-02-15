@@ -9,3 +9,7 @@ export const CANVAS_HEIGHT = canvas.height = 500;
 export const snake = new Snake(50, 50);
 export const fruit = new Fruits(10, 10);
 export const map = new Map();
+
+export function RandomNumberGenerator(max){
+    return Math.floor(Math.random() * max);
+};

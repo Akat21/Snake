@@ -1,5 +1,5 @@
-import {tail_down,tail_left,tail_right,tail_up, body_topright, body_topleft ,body_bottomright ,body_bottomleft,snake_head_up, snake_head_down, snake_head_left, snake_head_right, snake_body_horizontal, snake_body_vertical } from "../utils/SnakeAnimations.js";
-import {ctx, CANVAS_HEIGHT, CANVAS_WIDTH} from "../constants/values.js";
+import { SnakeAnim } from "../utils/SnakeAnimations.js";
+import {CANVAS_HEIGHT, CANVAS_WIDTH} from "../constants/values.js";
 import * as label from "../constants/labels.js";
 
 export default class Snake{
@@ -29,29 +29,29 @@ export default class Snake{
         this.isOver();
     };
 
-    Draw(ctx, x, y, width, height){
+    Draw(x, y, width, height){
         if (this.dir === "up"){
-            snake_head_up(x, y, width, height);
+            SnakeAnim(x, y, width, height, 'head_up.png')
         }
         else if (this.dir ==="down"){
-            snake_head_down(x,y,width,height);
+            SnakeAnim(x, y, width, height, 'head_down.png')
         }
         else if (this.dir === "left"){
-            snake_head_left(x,y,width,height);
+            SnakeAnim(x, y, width, height, 'head_left.png')
         }
         else if (this.dir === "right"){
-            snake_head_right(x,y,width,height);
+            SnakeAnim(x, y, width, height, 'head_right.png')
         }
         else{
-            snake_head_up(x, y, width, height);
+            SnakeAnim(x, y, width, height, 'head_up.png')
         }
     };
 
-    DrawTail(ctx, x, y, width, height){
+    DrawTail(width, height){
+        this.Draw(this.position_x * width, this.position_y * height, width, height);
         if (this.tailLength > 0){
 
             let [_x, _y] = this.AddTailPosition(this.dir, this.position_x, this.position_y);
-            let temp = 0;
             this.tailPosition_x[0] = _x;
             this.tailPosition_y[0] = _y;
 
@@ -72,66 +72,7 @@ export default class Snake{
             this.tailDirs.splice(0, 0, this.dir);
             this.tailDirs.pop();
 
-            for (let i = 0; i < this.tailLength; i++){
-                if (i < this.tailLength - 1){
-                    if(this.tailDirs[i] === "left" && this.tailDirs[i+1] === "up"){
-                        body_bottomleft(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50);
-                    }
-                    else if(this.tailDirs[i] === "down" && this.tailDirs[i+1] === "left"){
-                        body_bottomright(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50);
-                    }
-                    else if(this.tailDirs[i] === "up" && this.tailDirs[i+1] === "right"){
-                        body_topleft(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50);
-                    }
-                    else if(this.tailDirs[i] === "right" && this.tailDirs[i+1] === "down"){
-                        body_topright(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50);
-                    }
-                    else if(this.tailDirs[i] === "right" && this.tailDirs[i+1] === "up"){
-                        body_bottomright(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50);
-                    }
-                    else if(this.tailDirs[i] === "down" && this.tailDirs[i+1] === "right"){
-                        body_bottomleft(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50);
-                    }
-                    else if(this.tailDirs[i] === "left" && this.tailDirs[i+1] === "down"){
-                        body_topleft(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50);
-                    }
-                    else if(this.tailDirs[i] === "up" && this.tailDirs[i+1] === "left"){
-                        body_topright(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50);
-                    }
-                    else{
-                        if (this.tailDirs[i] === "left" || this.tailDirs[i] === "right"){
-                            snake_body_horizontal(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50)
-                        }
-                        else if(this.tailDirs[i] === "up" || this.tailDirs[i] === "down"){
-                            snake_body_vertical(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50)
-        
-                        }
-                    }
-                }
-                else if ((i === (this.tailLength - 1)) && (this.tailLength > 0)){
-                    if(this.tailDirs[i] === "left"){
-                        tail_right(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50);
-                    }
-                    else if(this.tailDirs[i] === "right"){
-                        tail_left(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50);
-                    }
-                    else if(this.tailDirs[i] === "down"){
-                        tail_up(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50);
-                    }
-                    else if(this.tailDirs[i] === "up"){
-                        tail_down(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50);
-                    }
-                }
-                else{
-                    if (this.tailDirs[i] === "left" || this.tailDirs[i] === "right"){
-                        snake_body_horizontal(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50)
-                    }
-                    else if(this.tailDirs[i] === "up" || this.tailDirs[i] === "down"){
-                        snake_body_vertical(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50)
-    
-                    }
-                }
-            }
+            this.AnimateTail();
 
         }
     }
@@ -173,10 +114,6 @@ export default class Snake{
             this.points = this.Reset();
         }
     };
-
-    // UpdateHighscore(highscore){
-    //     label.highscore_disp.innerText = `${highscore}`;
-    // }
 
     UpdatePoints(points){
         label.points_disp.innerText = `${points}`;
@@ -298,4 +235,67 @@ export default class Snake{
         }
     };
 
+    AnimateTail(){
+        for (let i = 0; i < this.tailLength; i++){
+            if (i < this.tailLength - 1){
+                if(this.tailDirs[i] === "left" && this.tailDirs[i+1] === "up"){
+                    SnakeAnim(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50, 'body_bottomleft.png')
+                }
+                else if(this.tailDirs[i] === "down" && this.tailDirs[i+1] === "left"){
+                    SnakeAnim(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50, 'body_bottomright.png')
+                }
+                else if(this.tailDirs[i] === "up" && this.tailDirs[i+1] === "right"){
+                    SnakeAnim(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50, 'body_topleft.png')
+                }
+                else if(this.tailDirs[i] === "right" && this.tailDirs[i+1] === "down"){
+                    SnakeAnim(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50, 'body_topright.png')
+                }
+                else if(this.tailDirs[i] === "right" && this.tailDirs[i+1] === "up"){
+                    SnakeAnim(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50, 'body_bottomright.png')
+                }
+                else if(this.tailDirs[i] === "down" && this.tailDirs[i+1] === "right"){
+                    SnakeAnim(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50, 'body_bottomleft.png')
+                }
+                else if(this.tailDirs[i] === "left" && this.tailDirs[i+1] === "down"){
+                    SnakeAnim(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50, 'body_topleft.png')
+                }
+                else if(this.tailDirs[i] === "up" && this.tailDirs[i+1] === "left"){
+                    SnakeAnim(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50, 'body_topright.png')
+                }
+                else{
+                    if (this.tailDirs[i] === "left" || this.tailDirs[i] === "right"){
+                        SnakeAnim(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50, 'body_horizontal.png')
+                    }
+                    else if(this.tailDirs[i] === "up" || this.tailDirs[i] === "down"){
+                        SnakeAnim(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50, 'body_vertical.png')
+                    }
+                }
+            }
+            else if ((i === (this.tailLength - 1)) && (this.tailLength > 0)){
+                if(this.tailDirs[i] === "left"){
+                    SnakeAnim(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50, 'tail_right.png')
+                }
+                else if(this.tailDirs[i] === "right"){
+                    SnakeAnim(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50, 'tail_left.png')
+                }
+                else if(this.tailDirs[i] === "down"){
+                    SnakeAnim(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50, 'tail_up.png')
+                }
+                else if(this.tailDirs[i] === "up"){
+                    SnakeAnim(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50, 'tail_down.png')
+                }
+            }
+            else{
+                if (this.tailDirs[i] === "left" || this.tailDirs[i] === "right"){
+                    SnakeAnim(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50, 'body_horizontal.png')
+                }
+                else if(this.tailDirs[i] === "up" || this.tailDirs[i] === "down"){
+                    SnakeAnim(this.tailPosition_x[i] * 50, this.tailPosition_y[i] * 50, 50, 50, 'body_vertical.png')
+                }
+            }
+        }
+    }
+    
+
 };
+

@@ -1,4 +1,5 @@
 import { ctx, CANVAS_HEIGHT, CANVAS_WIDTH } from "../constants/values.js";
+import { snake, fruit } from "../constants/values.js";
 
 export default class Map{
     constructor(){
@@ -23,12 +24,13 @@ export default class Map{
         }
     }
 
-    UpdateSnakePos(ctx, snake){
-        snake.Draw(ctx, snake.position_x * this.width, snake.position_y * this.height, this.width, this.height);
-        snake.DrawTail(ctx, snake.position_x * this.width, snake.position_y * this.height, this.width, this.height);
+    UpdateSnakePos(ctx){
+        snake.Update();
+        snake.DrawTail(this.width, this.height);
     }
 
-    UpdateFruitPos(ctx, fruit){
+    UpdateFruitPos(ctx){
+        fruit.Update(ctx, snake);
         fruit.Draw(ctx, fruit.position_x * this.width, fruit.position_y * this.height, this.width, this.height);
     }
 

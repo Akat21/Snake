@@ -1,5 +1,5 @@
-import {RandomNumberGenerator} from "./script.js";
-import { make_fruit } from "../utils/SnakeAnimations.js";
+import { RandomNumberGenerator } from "../constants/values.js";
+import { FruitAnim } from "../utils/SnakeAnimations.js";
 import { CANVAS_HEIGHT, CANVAS_WIDTH } from "../constants/values.js";
 
 
@@ -19,7 +19,7 @@ export default class Fruits{
     };
     
     Draw(ctx, x, y, width, height){
-        make_fruit(x, y, width, height);
+        FruitAnim(x, y, width, height);
 
     };
 
