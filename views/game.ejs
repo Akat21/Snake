@@ -20,7 +20,7 @@
         <form action="/" method="POST">
             <div id="name">
                 <h1 id="name--label">Enter your nickname:</h1>
-                <input id="name--input" type="text" name="nickname" maxlength="12" onfocus="this.value=''">
+                <input id="name--input" type="text" name="nickname" autocomplete="off" maxlength="12" onfocus="this.value=''">
             </div>
             <button id="start--btn" type="submit"></button>
         </form>
@@ -43,7 +43,7 @@
                     <button id="settings--name--edit--btn"></button>
                 </div>
                 <form action="/game" method="POST">
-                    <input id="change--name" type="text" name="nickname" maxlength="12" onfocus="this.value=''">
+                    <input id="change--name" type="text" name="nickname" autocomplete="off" maxlength="12" onfocus="this.value=''">
                     <button id="confirm--btn" type="submit"></button>
                 </form>
             </div>

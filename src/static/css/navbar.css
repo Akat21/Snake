@@ -70,10 +70,10 @@
 }
 
 /* Settings content */
-.settings--content{
+#mySettings{
+    display: none;
     z-index: 200;
     margin-top: 8px;
-    display: none;
     position: absolute;
     background-color: white;
     width: 185px;
@@ -178,7 +178,9 @@
     cursor: pointer;
 }
 
-.show {display:block;}
+.show {
+    display: block;
+}
 
 #navbar > h1 > img{
     width: 60px;

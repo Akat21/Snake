@@ -38,27 +38,49 @@ export function ButtonsInit(){
     });
 
     btn.settings.addEventListener("click",(e)=>{
-        document.getElementById("mySettings").classList.toggle("show");
-        input.change_name.style.display = "none";
-        btn.confirm_new_name.style.display = "none"
+        let settings_content = document.getElementById("mySettings");
+        settings_content.style.height = "190px";
+        if(getComputedStyle(settings_content).display === "none"){
+            settings_content.style.display = "block";
+            input.change_name.style.display = "none";
+            btn.confirm_new_name.style.display = "none"
+        }
+        else{
+            settings_content.style.display = "none";
+            input.change_name.style.display = "none";
+            btn.confirm_new_name.style.display = "none"
+        }
     });
 
     btn.settings_name_edit.addEventListener("click", (e)=>{
         let settings_content = document.getElementById("mySettings");
-        input.change_name.style.display = "inline-block";
-        btn.confirm_new_name.style.display = "inline-block";
-        settings_content.style.height = "260px";
+        if (input.change_name.style.display === "none"){ 
+            input.change_name.style.display = "inline-block";
+            btn.confirm_new_name.style.display = "inline-block";
+            settings_content.style.height = "260px";
+        }
+        else{
+            input.change_name.style.display = "none";
+            btn.confirm_new_name.style.display = "none";
+        }
     });
 
-    btn.confirm_new_name.addEventListener("click", (e)=>{
+    document.addEventListener("click",(e)=>{
         let settings_content = document.getElementById("mySettings");
+        if(e.target.id.length === 0 || e.target.id === "navbar"){
+            settings_content.style.display = "none";
+            btn.confirm_new_name.style.display = "none";
+            input.change_name.style.display = "none";
+        }
+    })
+
+    btn.confirm_new_name.addEventListener("click", (e)=>{
         if(input.change_name.value.length != 0){
             label.settings_name.textContent = input.change_name.value;
             input.name_login_input.value = input.change_name.value;
         }
         input.change_name.style.display = "none";
         btn.confirm_new_name.style.display = "none"
-        settings_content.style.height = "190px";
     });
 
     btn.difficulty_change.addEventListener("click",(e) =>{
