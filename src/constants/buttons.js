@@ -1,6 +1,7 @@
 //LOGIN POPUP BUTTONS
 export const start = document.getElementById("start--btn");
 export const edit_avatar_on_login = document.getElementById("avatar--login--btn");
+export const close_avatar_popup = document.getElementById("close--avatar--popup");
 
 //NAVBAR BUTTONS
 export const map_change = document.getElementById("map--btn");

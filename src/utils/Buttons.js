@@ -74,6 +74,21 @@ export function ButtonsInit(){
         }
     })
 
+    btn.edit_avatar_on_login.addEventListener("click",(e)=>{
+        let popup_avatar_choose = document.getElementById("popup--avatar--choose");
+        let popup_background = document.getElementById("popup--background");
+        popup_background.style.display = "block";
+        popup_background.style.zIndex = 102;
+        popup_avatar_choose.style.display = "block";
+    })
+
+    btn.close_avatar_popup.addEventListener("click", (e)=>{
+        let popup_background = document.getElementById("popup--background");
+        let popup_avatar_choose = document.getElementById("popup--avatar--choose");
+        popup_avatar_choose.style.display = "none";
+        popup_background.style.zIndex = 100;
+    })
+
     btn.confirm_new_name.addEventListener("click", (e)=>{
         if(input.change_name.value.length != 0){
             label.settings_name.textContent = input.change_name.value;
