@@ -67,7 +67,7 @@ export function ButtonsInit(){
 
     document.addEventListener("click",(e)=>{
         let settings_content = document.getElementById("mySettings");
-        if(e.target.id.length === 0 || e.target.id === "navbar"){
+        if(e.target.id.length === 0 || e.target.id === "navbar" || e.target.id === "canv"){
             settings_content.style.display = "none";
             btn.confirm_new_name.style.display = "none";
             input.change_name.style.display = "none";
@@ -85,6 +85,39 @@ export function ButtonsInit(){
     btn.close_avatar_popup.addEventListener("click", (e)=>{
         let popup_background = document.getElementById("popup--background");
         let popup_avatar_choose = document.getElementById("popup--avatar--choose");
+        popup_avatar_choose.style.display = "none";
+        popup_background.style.zIndex = 100;
+    })
+
+    btn.avatar1.addEventListener("click",(e)=>{
+        let login_avatar = document.getElementById("avatar--login--avatar");
+        let popup_avatar_choose = document.getElementById("popup--avatar--choose");
+        let popup_background = document.getElementById("popup--background");
+        if (login_avatar.src.slice(21,) != "/assets/snake_avatar1.png"){
+            login_avatar.src = getComputedStyle(btn.avatar1).backgroundImage.slice(5,-2);
+        }
+        popup_avatar_choose.style.display = "none";
+        popup_background.style.zIndex = 100;
+    })
+
+    btn.avatar2.addEventListener("click",(e)=>{
+        let login_avatar = document.getElementById("avatar--login--avatar");
+        let popup_avatar_choose = document.getElementById("popup--avatar--choose");
+        let popup_background = document.getElementById("popup--background");
+        if (login_avatar.src.slice(21,) != "/assets/snake_avatar4.png"){
+            login_avatar.src = getComputedStyle(btn.avatar2).backgroundImage.slice(5,-2);
+        }
+        popup_avatar_choose.style.display = "none";
+        popup_background.style.zIndex = 100;
+    })
+
+    btn.avatar3.addEventListener("click",(e)=>{
+        let login_avatar = document.getElementById("avatar--login--avatar");
+        let popup_avatar_choose = document.getElementById("popup--avatar--choose");
+        let popup_background = document.getElementById("popup--background");
+        if (login_avatar.src.slice(21,) != "/assets/snake_avatar5.png"){
+            login_avatar.src = getComputedStyle(btn.avatar3).backgroundImage.slice(5,-2);
+        }
         popup_avatar_choose.style.display = "none";
         popup_background.style.zIndex = 100;
     })

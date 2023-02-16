@@ -2,6 +2,9 @@
 export const start = document.getElementById("start--btn");
 export const edit_avatar_on_login = document.getElementById("avatar--login--btn");
 export const close_avatar_popup = document.getElementById("close--avatar--popup");
+export const avatar1 = document.getElementById("avatar1");
+export const avatar2 = document.getElementById("avatar2");
+export const avatar3 = document.getElementById("avatar3");
 
 //NAVBAR BUTTONS
 export const map_change = document.getElementById("map--btn");

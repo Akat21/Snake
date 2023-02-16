@@ -105,6 +105,66 @@
     background-size: 100% 100%;
 }
 
+#avatar1{
+    margin-top: 70px;
+    width: 200px;
+    height: 200px;
+    background: url("../../assets/snake_avatar1.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: silver;
+    border: 7px solid black;
+    border-radius: 120px;
+    z-index: 101;
+    cursor: pointer;
+    opacity: 50%;
+}
+
+#avatar1:hover{
+    opacity: 100%;
+}
+
+#avatar2{
+    margin-top: 70px;
+    width: 200px;
+    height: 200px;
+    background: url("../../assets/snake_avatar4.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: silver;
+    border: 7px solid black;
+    border-radius: 120px;
+    cursor: pointer;
+    z-index: 101;
+    opacity: 50%;
+}
+
+#avatar2:hover{
+    opacity: 100%;
+}
+
+#avatar3{
+    margin-top: 70px;
+    width: 200px;
+    height: 200px;
+    background: url("../../assets/snake_avatar5.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: silver;
+    border: 7px solid black;
+    border-radius: 120px;
+    cursor: pointer;
+    z-index: 101;
+    opacity: 50%;
+}
+
+#avatar3:hover{
+    opacity: 100%;
+}
+
 #name{
     margin-top: 50px;
 }
