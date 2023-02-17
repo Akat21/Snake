@@ -1,9 +1,8 @@
-import { ButtonsInit } from "../utils/Buttons.js";
+import { ButtonsInit, Diff_Btn_Choose } from "../utils/Buttons.js";
 import { InputsInit } from "../utils/Inputs.js";
 import { LeaderboardDataPass } from "../utils/DatabaseManagement.js";
 import { map, ctx, CANVAS_HEIGHT, CANVAS_WIDTH } from "../constants/values.js";
 
-let difficulty = 1;
 
 LeaderboardDataPass();
 InputsInit();
@@ -11,6 +10,7 @@ ButtonsInit();
 
 
 function draw(){
+    let difficulty = Diff_Btn_Choose();
     const fps = 4 * difficulty;
 
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);

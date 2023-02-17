@@ -58,9 +58,6 @@ router.post('/', (req, res)=>{
             fs.writeFileSync('./database/leaderboard.txt', data, 'utf-8');
         }    
     }
-    if(req.body.diff){
-        diff = req.body.diff;
-    }
-    res.redirect('game/?user=' + nickname + '&id=' + curr_user_id + '&df=' + diff);
+    res.redirect('game/?user=' + nickname + '&id=' + curr_user_id);
 });
 module.exports = router;

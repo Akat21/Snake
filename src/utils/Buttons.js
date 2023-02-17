@@ -8,7 +8,6 @@ import { snake } from "../constants/values.js";
 let difficulty = 1;
 
 export function ButtonsInit(){
-    let difficulty = Diff_Btn_Choose(diff);
 
     btn.leaderboard.addEventListener("click", (e)=>{
         let leaderboard_popup = document.getElementById("leaderboard--popup");
@@ -150,11 +149,8 @@ export function ButtonsInit(){
         btn.difficulty_change.style.backgroundSize = "100% 100%";
         let difficulty_choose_div = document.getElementById("difficulty--choose");
         let popup_background = document.getElementById("popup--background");
-        let diff_save = document.getElementById("diff--save");
         popup_background.style.display="none";
         difficulty_choose_div.style.display="none";
-        difficulty = 1;
-        diff_save.value = difficulty;
     });
 
     btn.medium.addEventListener("click",(e)=>{
@@ -162,11 +158,8 @@ export function ButtonsInit(){
         btn.difficulty_change.style.backgroundSize = "100% 100%";
         let difficulty_choose_div = document.getElementById("difficulty--choose");
         let popup_background = document.getElementById("popup--background");
-        let diff_save = document.getElementById("diff--save");
         popup_background.style.display="none";
         difficulty_choose_div.style.display="none";
-        difficulty = 2;
-        diff_save.value = difficulty;
     });
 
     btn.hard.addEventListener("click",(e)=>{
@@ -174,28 +167,19 @@ export function ButtonsInit(){
         btn.difficulty_change.style.backgroundSize = "100% 100%";
         let difficulty_choose_div = document.getElementById("difficulty--choose");
         let popup_background = document.getElementById("popup--background");
-        let diff_save = document.getElementById("diff--save");
         popup_background.style.display="none";
         difficulty_choose_div.style.display="none";
-        difficulty = 3;
-        diff_save.value = difficulty;
     });
+}
 
-    function Diff_Btn_Choose(diff){
-        if(diff === '1'){
-            btn.difficulty_change.style.background = "url('../assets/easy.jpg')";
-            btn.difficulty_change.style.backgroundSize = "100% 100%";
-            return 1;
-        }
-        else if(diff === '2'){
-            btn.difficulty_change.style.background = "url('../assets/medium.jpg')";
-            btn.difficulty_change.style.backgroundSize = "100% 100%";
-            return 2;
-        }
-        else if(diff === '3'){
-            btn.difficulty_change.style.background = "url('../assets/hard.jpg')";
-            btn.difficulty_change.style.backgroundSize = "100% 100%";
-            return 3;
-        }
+export function Diff_Btn_Choose(){
+    if(getComputedStyle(btn.difficulty_change).backgroundImage.slice(26,-2) === "/assets/easy.jpg"){
+        return 1;
+    }
+    else if(getComputedStyle(btn.difficulty_change).backgroundImage.slice(26,-2) === "/assets/medium.jpg"){
+        return 2;
+    }
+    else if(getComputedStyle(btn.difficulty_change).backgroundImage.slice(26,-2) === "/assets/hard.jpg"){
+        return 3;
     }
 }

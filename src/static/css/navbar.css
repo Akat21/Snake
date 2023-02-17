@@ -97,6 +97,15 @@
 #settings--name{
     display: flex;
     justify-content: center;
+    user-select: none;
+}
+
+#difficulty--label{
+    user-select: none;
+}
+
+#leaderboard--label{
+    user-select: none;
 }
 
 #settings--name--txt{
