@@ -90,10 +90,14 @@ export function ButtonsInit(){
 
     btn.avatar1.addEventListener("click",(e)=>{
         let login_avatar = document.getElementById("avatar--login--avatar");
+        let settings_avatar = document.getElementById("avatar--settings--avatar");
         let popup_avatar_choose = document.getElementById("popup--avatar--choose");
         let popup_background = document.getElementById("popup--background");
         if (login_avatar.src.slice(21,) != "/assets/snake_avatar1.png"){
             login_avatar.src = getComputedStyle(btn.avatar1).backgroundImage.slice(5,-2);
+        }
+        if (settings_avatar.src.slice(21,) != "/assets/snake_avatar1.png"){
+            settings_avatar.src = getComputedStyle(btn.avatar1).backgroundImage.slice(5,-2);
         }
         popup_avatar_choose.style.display = "none";
         popup_background.style.zIndex = 100;
@@ -101,10 +105,14 @@ export function ButtonsInit(){
 
     btn.avatar2.addEventListener("click",(e)=>{
         let login_avatar = document.getElementById("avatar--login--avatar");
+        let settings_avatar = document.getElementById("avatar--settings--avatar");
         let popup_avatar_choose = document.getElementById("popup--avatar--choose");
         let popup_background = document.getElementById("popup--background");
         if (login_avatar.src.slice(21,) != "/assets/snake_avatar4.png"){
             login_avatar.src = getComputedStyle(btn.avatar2).backgroundImage.slice(5,-2);
+        }
+        if (settings_avatar.src.slice(21,) != "/assets/snake_avatar4.png"){
+            settings_avatar.src = getComputedStyle(btn.avatar2).backgroundImage.slice(5,-2);
         }
         popup_avatar_choose.style.display = "none";
         popup_background.style.zIndex = 100;
@@ -112,13 +120,24 @@ export function ButtonsInit(){
 
     btn.avatar3.addEventListener("click",(e)=>{
         let login_avatar = document.getElementById("avatar--login--avatar");
+        let settings_avatar = document.getElementById("avatar--settings--avatar");
         let popup_avatar_choose = document.getElementById("popup--avatar--choose");
         let popup_background = document.getElementById("popup--background");
         if (login_avatar.src.slice(21,) != "/assets/snake_avatar5.png"){
             login_avatar.src = getComputedStyle(btn.avatar3).backgroundImage.slice(5,-2);
         }
+        if (settings_avatar.src.slice(21,) != "/assets/snake_avatar5.png"){
+            settings_avatar.src = getComputedStyle(btn.avatar3).backgroundImage.slice(5,-2);
+        }
         popup_avatar_choose.style.display = "none";
         popup_background.style.zIndex = 100;
+    })
+
+    btn.edit_avatar_on_settings.addEventListener("click", (e)=>{
+        let popup_avatar_choose = document.getElementById("popup--avatar--choose");
+        let popup_background = document.getElementById("popup--background");
+        popup_background.style.zIndex = 102;
+        popup_avatar_choose.style.display = "block";
     })
 
     btn.confirm_new_name.addEventListener("click", (e)=>{
